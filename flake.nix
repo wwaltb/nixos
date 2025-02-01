@@ -1,5 +1,5 @@
 {
-    description = "Nixos config flake";
+    description = "my NixOS configuration";
 
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -19,8 +19,7 @@
         let
             system = "x86_64-linux";
             pkgs = nixpkgs.legacyPackages.${system};
-        in
-            {
+        in {
             nixosConfigurations.jonsbo6 = nixpkgs.lib.nixosSystem {
                 system = system;
                 specialArgs = {inherit inputs;};

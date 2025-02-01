@@ -5,18 +5,17 @@
         inputs.nix-colors.homeManagerModules.default
     ];
 
-    programs.home-manager.enable = true;
-
     home = {
         username = "walt";
         homeDirectory = "/home/walt";
 
-	packages = with pkgs; [
-	];
+        packages = with pkgs; [
+        ];
     };
 
-
     colorScheme = inputs.nix-colors.colorSchemes.kanagawa;
+
+    programs.home-manager.enable = true;
 
     home.stateVersion = "24.11"; # Do not change
 }
