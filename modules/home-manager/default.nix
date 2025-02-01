@@ -1,7 +1,7 @@
 { lib, ... }:
 {
     imports = [
-        ./hyprland.nix.nix
+        ./hyprland.nix
     ];
 
     hyprland.enable = lib.mkDefault true;
