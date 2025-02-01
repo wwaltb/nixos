@@ -10,12 +10,11 @@
     home = {
         username = "walt";
         homeDirectory = "/home/walt";
+
+	packages = with pkgs; [
+	];
     };
 
-    packages = with pkgs; [
-	microfetch
-        nvtopPackages.nvidia
-    ];
 
     colorScheme = inputs.nix-colors.colorSchemes.kanagawa;
 

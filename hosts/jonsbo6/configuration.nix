@@ -15,6 +15,8 @@
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
+    nixpkgs.config.allowUnfree = true;
+
     nvidia.enable = true;
 
     networking.hostName = "jonsbo6"; # Define your hostname.
@@ -30,11 +32,11 @@
 
     # Select internationalisation properties.
     i18n.defaultLocale = "en_US.UTF-8";
-    console = {
-        font = "Lat2-Terminus16";
-        keyMap = "us";
-        useXkbConfig = true; # use xkb.options in tty.
-    };
+    # console = {
+    #     font = "Lat2-Terminus16";
+    #     keyMap = "us";
+    #     useXkbConfig = true; # use xkb.options in tty.
+    # };
 
     # nixpkgs.config.allowUnfree = true;
     # hardware.graphics = {
@@ -84,10 +86,14 @@
 
     home-manager = {
         extraSpecialArgs = { inherit inputs; };
+	backupFileExtension = "backup";
         users.walt = import ./home.nix;
     };
 
     programs.firefox.enable = true;
+    programs.hyprland.enable = true;
+    # programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+
 
     # List packages installed in system profile. To search, run:
     # $ nix search wget

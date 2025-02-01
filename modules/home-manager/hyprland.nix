@@ -5,9 +5,6 @@
 	};
 
 	config = lib.mkIf config.hyprland.enable {
-		programs.hyprland.enable = true;
-		programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-
 		wayland.windowManager.hyprland = {
 			enable = true;
 			settings = {
@@ -18,7 +15,7 @@
 				};
 
 				animations = {
-					enabled = no;
+					enabled = false;
 				};
 
 			};

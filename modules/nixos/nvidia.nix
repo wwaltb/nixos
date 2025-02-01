@@ -5,8 +5,6 @@
     };
 
     config = lib.mkIf config.nvidia.enable {
-        nixpkgs.config.allowUnfree = true;
-
         hardware.graphics = {
             enable = true;
         };
