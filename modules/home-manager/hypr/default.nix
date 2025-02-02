@@ -50,5 +50,6 @@
             };
             systemd.variables = ["--all"];
         };
+	keys.enable = true;
     };
 }

@@ -1,8 +1,8 @@
-{ lib, ... }:
-{
-    imports = [
-        ./hypr
-    ];
+{lib, ...}: {
+  imports = [
+    ./hypr
+    ./nvim
+  ];
 
-    hyprland.enable = lib.mkDefault true;
+  hyprland.enable = lib.mkDefault true;
 }
