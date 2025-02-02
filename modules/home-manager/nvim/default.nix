@@ -10,6 +10,10 @@ _: {
           enableTreesitter = true;
 
           nix.enable = true;
+          clangd.enable = true;
+        };
+        mini = {
+          completion.enable = true;
         };
       };
     };
