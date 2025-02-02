@@ -1,10 +1,10 @@
 {lib, ...}: {
   imports = [
-    ./completion.nix
+    ./blink.nix
     ./kanagawa.nix
     ./mini.nix
   ];
 
-  completion.enable = lib.mkDefault true;
+  blink.enable = lib.mkDefault true;
   mini.enable = lib.mkDefault true;
 }
