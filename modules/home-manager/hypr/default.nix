@@ -11,7 +11,7 @@
 	config = lib.mkIf config.hyprland.enable {
 		wayland.windowManager.hyprland = {
 			enable = true;
-			settings = with config.colorScheme.colors; {
+			settings = with config.colorScheme.palette; {
 				general = {
 					"col.active_border" = "rgba(${base06}ff)";
 					"col.inactive_border" = "rgba(${base03}ff)";
