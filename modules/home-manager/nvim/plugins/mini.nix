@@ -13,7 +13,6 @@
     programs.nvf.settings.vim.mini = {
       # text editing
       ai.enable = true;
-      completion.enable = true;
       surround.enable = true;
 
       # general workflow

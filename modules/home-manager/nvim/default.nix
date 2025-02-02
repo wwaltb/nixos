@@ -15,7 +15,6 @@
                 viAlias = true;
                 vimAlias = true;
                 lsp = {
-                    lspSignature.enable = true;
                 };
                 languages = {
                     enableLSP = true;

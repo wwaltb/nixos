@@ -11,7 +11,7 @@ inputs,
 
     config = lib.mkIf config.blink.enable {
         programs.nvf.settings.vim.lazy.plugins = with pkgs.vimPlugins; {
-            blink = {
+            "blink.cmp" = {
                 package = blink-cmp;
                 setupOpts = {
                     keymap = {
@@ -27,7 +27,6 @@ inputs,
                         window = {
                             border = "single";
                         };
-
                     };
                     sources = {
                         default = [
@@ -38,7 +37,7 @@ inputs,
                         ];
                     };
                 };
-                after = "friendly-snippets";
+                #after = "friendly-snippets";
             };
             friendly-snippets = {
                 package = friendly-snippets;
