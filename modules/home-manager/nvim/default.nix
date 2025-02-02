@@ -55,5 +55,6 @@
                 };
             };
         };
+        nvim-keys.enable = true;
     };
 }

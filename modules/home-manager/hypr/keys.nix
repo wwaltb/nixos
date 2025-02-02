@@ -1,10 +1,10 @@
 { config, lib, pkgs, inputs, ... }:
 { 
     options = {
-        keys.enable = lib.mkEnableOption "enables hyprland keymappings";
+        hypr-keys.enable = lib.mkEnableOption "enables hyprland keymappings";
     };
 
-    config = lib.mkIf config.keys.enable {
+    config = lib.mkIf config.hypr-keys.enable {
         wayland.windowManager.hyprland = {
             settings = {
                 bind = [

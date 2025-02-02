@@ -50,6 +50,6 @@
             };
             systemd.variables = ["--all"];
         };
-	keys.enable = true;
+        hypr-keys.enable = true;
     };
 }

@@ -1,10 +1,10 @@
 { config, lib, pkgs, inputs, ... }:
 { 
     options = {
-        keys.enable = lib.mkEnableOption "enables neovim keymappings";
+        nvim-keys.enable = lib.mkEnableOption "enables neovim keymappings";
     };
 
-    config = lib.mkIf config.keys.enable {
+    config = lib.mkIf config.nvim-keys.enable {
         programs.nvf.settings.vim.keymaps = [
             # pickers
             {
