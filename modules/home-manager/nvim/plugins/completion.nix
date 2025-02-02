@@ -15,7 +15,7 @@ inputs,
             mappings = {
                 close = "<C-h";
                 next = "<C-j";
-                prev = "<C-k";
+                previous = "<C-k";
                 complete = "<C-l";
                 scrollDocsUp = "<C-u";
                 scrollDocsDown = "<C-d";
