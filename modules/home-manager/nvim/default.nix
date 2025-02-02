@@ -19,15 +19,15 @@
                     kanagawa = {
                         package = kanagawa-nvim;
                         setup = ''
-                            require("kanagawa").setup
-                            vim.cmd("coloscheme kanagawa")
+                            require("kanagawa").setup()
+                            vim.cmd("colorscheme kanagawa")
                         '';
                     };
                 };
                 theme = {
                     enable = false;
                     name = "base16";
-                    base16-colors = with config.colorScheme.colors; {
+                    base16-colors = with config.colorScheme.palette; {
                         inherit base00;
                         inherit base01;
                         inherit base02;
