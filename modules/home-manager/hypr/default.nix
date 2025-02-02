@@ -1,5 +1,9 @@
 { config, lib, pkgs, inputs, ... }:
 { 
+    imports = [
+        ./keys.nix
+    ];
+
 	options = {
 		hyprland.enable = lib.mkEnableOption "enables hyprland";
 	};
@@ -43,12 +47,6 @@
                     force_default_wallpaper = 0;
                     background_color = "0x${base00}";
                 };
-
-                bind = [
-                    "super, code:47, exec, kitty"
-                    "super, d, killactive"
-                    "super shift, m, exit"
-                ];
             };
             systemd.variables = ["--all"];
         };
