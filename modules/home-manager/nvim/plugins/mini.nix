@@ -1,10 +1,10 @@
 { config, lib, pkgs, inputs, ... }:
 { 
     options = {
-        mini.enable = lib.mkEnableOption "enables mini plugin";
+        mini.enable = lib.mkEnableOption "enables mini plugins";
     };
 
-    config = lib.mkIf config.keys.enable {
+    config = lib.mkIf config.mini.enable {
         programs.nvf.settings.vim.mini = {
             # text editing
             ai.enable = true;
