@@ -9,6 +9,7 @@
 	};
 
 	config = lib.mkIf config.hyprland.enable {
+        programs.hyprland.enable = true;
 		wayland.windowManager.hyprland = {
 			enable = true;
 			settings = with config.colorScheme.palette; {

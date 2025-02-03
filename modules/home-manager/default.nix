@@ -1,9 +1,11 @@
 {lib, ...}: {
   imports = [
-    ./nvim
+    ./firefox
     ./hypr
+    ./nvim
   ];
 
-  nvim.enable = lib.mkDefault true;
+  firefox.enable = lib.mkDefault true;
   hyprland.enable = lib.mkDefault true;
+  nvim.enable = lib.mkDefault true;
 }
