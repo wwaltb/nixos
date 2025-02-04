@@ -5,22 +5,21 @@
     };
 
     config = lib.mkIf config.cascade.enable {
-        programs.firefox.userChrome = let
+        programs.firefox.profiles.default.userChrome = let
             cascade = builtins.fetchGit {
                 url = "https://github.com/cascadefox/cascade";
-                ref = "master";
-
+                rev = "8239e304844beb854c068a273f1171f7fadd5212";
             };
         in ''
-            @import "${cascade}/chrome/inlcudes/cascade-config.css";
-            @import "${cascade}/chrome/inlcudes/cascade-colours.css";
+            @import "${cascade}/chrome/includes/cascade-config.css";
+            @import "${cascade}/chrome/includes/cascade-colours.css";
 
-            @import "${cascade}/chrome/inlcudes/cascade-layout.css";
-            @import "${cascade}/chrome/inlcudes/cascade-responsive.css";
-            @import "${cascade}/chrome/inlcudes/cascade-floating-panel.css";
+            @import "${cascade}/chrome/includes/cascade-layout.css";
+            @import "${cascade}/chrome/includes/cascade-responsive.css";
+            @import "${cascade}/chrome/includes/cascade-floating-panel.css";
 
-            @import "${cascade}/chrome/inlcudes/cascade-nav-bar.css";
-            @import "${cascade}/chrome/inlcudes/cascade-tabs.css";
+            @import "${cascade}/chrome/includes/cascade-nav-bar.css";
+            @import "${cascade}/chrome/includes/cascade-tabs.css";
         '';
     };
 }
