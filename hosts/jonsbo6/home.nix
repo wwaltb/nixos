@@ -1,27 +1,27 @@
 {
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
+config,
+lib,
+pkgs,
+inputs,
+...
 }: {
-  imports = [
-    ../../modules/home-manager/default.nix
-    inputs.nix-colors.homeManagerModules.default
-    inputs.nvf.homeManagerModules.default
-  ];
-
-  home = {
-    username = "walt";
-    homeDirectory = "/home/walt";
-
-    packages = with pkgs; [
+    imports = [
+        ../../modules/home-manager/default.nix
+        inputs.nix-colors.homeManagerModules.default
+        inputs.nvf.homeManagerModules.default
     ];
-  };
 
-  colorScheme = inputs.nix-colors.colorSchemes.kanagawa;
+    home = {
+        username = "walt";
+        homeDirectory = "/home/walt";
 
-  programs.home-manager.enable = true;
+        packages = with pkgs; [
+        ];
+    };
 
-  home.stateVersion = "24.11"; # Do not change
+    colorScheme = inputs.nix-colors.colorSchemes.kanagawa;
+
+    programs.home-manager.enable = true;
+
+    home.stateVersion = "24.11"; # Do not change
 }
