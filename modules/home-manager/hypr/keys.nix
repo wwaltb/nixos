@@ -8,7 +8,7 @@
         wayland.windowManager.hyprland = {
             settings = {
                 bind = [
-                    "super, code:47, exec, kitty"
+                    "super, code:47, exec, ghostty"
                     "super shift, code:47, exec, firefox"
                     "super, d, killactive"
                     "super shift, m, exit"

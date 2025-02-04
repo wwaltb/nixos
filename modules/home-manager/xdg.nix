@@ -1,9 +1,9 @@
 {config, lib, pkgs, ...}: {
     options = {
-        xdg.enable = lib.mkEnableOption "enables xdg configuration";
+        xdg-conf.enable = lib.mkEnableOption "enables xdg configuration";
     };
 
-    config = lib.mkIf config.xdg.enable {
+    config = lib.mkIf config.xdg-conf.enable {
         xdg.userDirs = {
             enable = true;
             createDirectories = true;

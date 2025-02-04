@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 {
     options = {
         kanagawa.enable = lib.mkEnableOption "enables kanagawa stylix configuration";
@@ -8,7 +8,7 @@
         stylix = {
             enable = true;
             image = ../../assets/bus-wallpaper.png;
-            imageScalingMode = center;
+            imageScalingMode = "center";
             base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
         };
     };

@@ -16,8 +16,11 @@ inputs,
         homeDirectory = "/home/walt";
 
         packages = with pkgs; [
+            ghostty
         ];
     };
+
+    programs.ghostty.enable = true;
 
     colorScheme = inputs.nix-colors.colorSchemes.kanagawa;
 

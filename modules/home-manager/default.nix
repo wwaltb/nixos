@@ -9,5 +9,5 @@
     firefox.enable = lib.mkDefault true;
     hyprland.enable = lib.mkDefault true;
     nvim.enable = lib.mkDefault true;
-    xdg.enable = lib mkDefault true;
+    xdg-conf.enable = lib.mkDefault true;
 }

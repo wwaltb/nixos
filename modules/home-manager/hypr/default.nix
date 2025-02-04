@@ -13,8 +13,8 @@
                         enable = true;
                         settings = with config.colorScheme.palette; {
                                 general = {
-                                        "col.active_border" = "rgba(${base06}ff)";
-                                        "col.inactive_border" = "rgba(${base03}ff)";
+                                        #"col.active_border" = "rgba(${base06}ff)";
+                                        #"col.inactive_border" = "rgba(${base03}ff)";
                                         border_size = 3;
                                         gaps_in = 4;
                                         gaps_out = 8;
@@ -45,7 +45,7 @@
                                 misc = {
                                         disable_hyprland_logo = true;
                                         force_default_wallpaper = 0;
-                                        background_color = "0x${base00}";
+                                        #background_color = "0x${base00}";
                                 };
                         };
                         systemd.variables = ["--all"];
