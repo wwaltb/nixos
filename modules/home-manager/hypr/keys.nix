@@ -9,6 +9,7 @@
             settings = {
                 bind = [
                     "super, code:47, exec, kitty"
+                    "super shift, code:47, exec, firefox"
                     "super, d, killactive"
                     "super shift, m, exit"
                 ];
