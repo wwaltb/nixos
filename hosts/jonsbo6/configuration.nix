@@ -7,6 +7,7 @@
     imports = [
         ./hardware-configuration.nix
         inputs.home-manager.nixosModules.default
+        inputs.stylix.nixosModules.stylix
     ];
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -18,6 +19,9 @@
     nixpkgs.config.allowUnfree = true;
 
     nvidia.enable = true;
+
+    # stylix theme
+    kanagawa.enable = true;
 
     networking.hostName = "jonsbo6"; # Define your hostname.
     networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.

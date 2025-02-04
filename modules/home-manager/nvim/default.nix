@@ -31,7 +31,7 @@
                 };
             };
         };
-        kanagawa.enable = true;
+        kanagawa-nvim.enable = true;
         nvim-keys.enable = true;
     };
 }

@@ -6,10 +6,10 @@ inputs,
 ...
 }: {
     options = {
-        kanagawa.enable = lib.mkEnableOption "enables the kanagawa colorscheme";
+        kanagawa-nvim.enable = lib.mkEnableOption "enables the kanagawa neovim colorscheme";
     };
 
-    config = lib.mkIf config.kanagawa.enable {
+    config = lib.mkIf config.kanagawa-nvim.enable {
         programs.nvf.settings.vim.extraPlugins = with pkgs.vimPlugins; {
 
             kanagawa = {
