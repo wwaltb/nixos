@@ -41,6 +41,19 @@
           general = [
 
           ];
+          mini = with pkgs.vimPlugins; [
+            # text editing
+            mini-ai
+            mini-comment
+            # general workflow
+            mini-files
+            mini-pick
+            # appearance
+            mini-icons
+            mini-starter
+            mini-statusline
+            # other
+          ];
         };
 
       });
@@ -56,7 +69,8 @@
             general = true;
             lsps = true;
             themer = true;
-                                                colorscheme = "kanagawa";
+            colorscheme = "kanagawa";
+            mini = true;
           };
         };
       };
