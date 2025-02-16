@@ -42,22 +42,6 @@
     #     useXkbConfig = true; # use xkb.options in tty.
     # };
 
-    # nixpkgs.config.allowUnfree = true;
-    # hardware.graphics = {
-    #     enable = true;
-    # };
-    # services.xserver.videoDrivers = ["nvidia"];
-    # hardware.nvidia = {
-    #     modesetting.enable = true;
-    #     powerManagement.enable = false;
-    #     powerManagement.finegrained = false;
-    #     open = false;
-    #     nvidiaSettings = true;
-    #     package = config.boot.kernelPackages.nvidiaPackages.stable;
-    # };
-
-
-
     # Configure keymap in X11
     # services.xserver.xkb.layout = "us";
     # services.xserver.xkb.options = "eurosign:e,caps:escape";
