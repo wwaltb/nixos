@@ -42,17 +42,7 @@
 
           ];
           mini = with pkgs.vimPlugins; [
-            # text editing
-            mini-ai
-            mini-comment
-            # general workflow
-            mini-files
-            mini-pick
-            # appearance
-            mini-icons
-            mini-starter
-            mini-statusline
-            # other
+            mini-nvim
           ];
         };
 
