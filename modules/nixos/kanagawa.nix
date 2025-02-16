@@ -7,7 +7,7 @@
     config = lib.mkIf config.kanagawa.enable {
         stylix = {
             enable = true;
-            image = ../../assets/bus-wallpaper4k.png;
+            image = ../../assets/bus-wallpaper.png;
             imageScalingMode = "center";
             base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
         };
