@@ -1,6 +1,6 @@
 return {
     {
-        "mini-nvim",
+        "mini.nvim",
         lazy = false,
         keys = {
             { "<C-s>", require("mini.files").open },
