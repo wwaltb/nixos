@@ -31,6 +31,9 @@
             lze
             snacks-nvim
           ];
+          mini = with pkgs.vimPlugins; [
+            mini-nvim
+          ];
           themer = with pkgs.vimPlugins; [
             (builtins.getAttr (categories.colorscheme or "kanagawa") {
               "kanagawa" = kanagawa-nvim;
@@ -40,9 +43,6 @@
         optionalPlugins = {
           general = [
 
-          ];
-          mini = with pkgs.vimPlugins; [
-            mini-nvim
           ];
         };
 
