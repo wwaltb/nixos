@@ -12,6 +12,7 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+    nixCats.url = "github:BirdeeHub/nixCats-nvim";
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,20 +21,22 @@
     stylix.url = "github:danth/stylix";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    nixosConfigurations.jonsbo6 = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./hosts/jonsbo6/configuration.nix
-        ./modules/nixos/default.nix
-      ];
+  outputs =
+    { self
+    , nixpkgs
+    , ...
+    } @ inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
+    {
+      nixosConfigurations.jonsbo6 = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/jonsbo6/configuration.nix
+          ./modules/nixos/default.nix
+        ];
+      };
     };
-  };
 }
