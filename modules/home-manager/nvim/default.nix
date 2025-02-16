@@ -10,7 +10,7 @@
   config = lib.mkIf config.nvim.enable {
     nixCats = {
       enable = true;
-      nixpgs_version = inputs.nixpgs;
+      nixpkgs_version = inputs.nixpkgs;
       addOverlays = [
         (inputs.nixCats.utils.standardPluginOverlay inputs)
       ];
@@ -21,7 +21,7 @@
       categoryDefinitions.replace = ({ pkgs, settings, categories, extra, name, mkNvimPlugin, ... }@packageDef: {
         lspsAndRuntimeDeps = {
           lsps = with pkgs; [
-            clangd
+            clang-tools
             lua-language-server
             nixd
           ];
@@ -31,9 +31,9 @@
             lze
             snacks-nvim
           ];
-          themer = with pkgs; [
-            (builtins.getAttr packageDef.categories.colorscheme {
-              "kanagawa" = kanagawa-vim;
+          themer = with pkgs.vimPlugins; [
+            (builtins.getAttr (categories.colorscheme or "kanagawa") {
+              "kanagawa" = kanagawa-nvim;
             })
           ];
         };
@@ -56,6 +56,7 @@
             general = true;
             lsps = true;
             themer = true;
+                                                colorscheme = "kanagawa";
           };
         };
       };
