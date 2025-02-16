@@ -1,7 +1,1 @@
-require("snacks").setup({
-    dashboard = { enabled = true },
-})
-
-require("lze").load {
-
-}
+require("lze").load("plugins")
