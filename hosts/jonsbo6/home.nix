@@ -1,30 +1,30 @@
-{
-config,
-lib,
-pkgs,
-inputs,
-...
+{ config
+, lib
+, pkgs
+, inputs
+, ...
 }: {
-    imports = [
-        ../../modules/home-manager/default.nix
-        inputs.nix-colors.homeManagerModules.default
-        inputs.nvf.homeManagerModules.default
+  imports = [
+    ../../modules/home-manager/default.nix
+    inputs.nix-colors.homeManagerModules.default
+    inputs.nvf.homeManagerModules.default
+  ];
+
+  home = {
+    username = "walt";
+    homeDirectory = "/home/walt";
+
+    packages = with pkgs; [
+      ghostty
+      pavucontrol
     ];
+  };
 
-    home = {
-        username = "walt";
-        homeDirectory = "/home/walt";
+  programs.ghostty.enable = true;
 
-        packages = with pkgs; [
-            ghostty
-        ];
-    };
+  colorScheme = inputs.nix-colors.colorSchemes.kanagawa;
 
-    programs.ghostty.enable = true;
+  programs.home-manager.enable = true;
 
-    colorScheme = inputs.nix-colors.colorSchemes.kanagawa;
-
-    programs.home-manager.enable = true;
-
-    home.stateVersion = "24.11"; # Do not change
+  home.stateVersion = "24.11"; # Do not change
 }
