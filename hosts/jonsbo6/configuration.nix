@@ -21,8 +21,9 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 7d";
+    options = "--delete-older-than 7d --keep-generations 3";
   };
+  nix.optimise.automatic = true;
 
   nixpkgs.config.allowUnfree = true;
   nvidia.enable = true;
