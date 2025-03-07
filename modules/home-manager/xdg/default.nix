@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }: {
   options = {
-    xdg-conf.enable = lib.mkEnableOption "enables xdg configuration";
+    xdg-dirs.enable = lib.mkEnableOption "enables xdg configuration";
   };
 
   config = lib.mkIf config.xdg-conf.enable {
