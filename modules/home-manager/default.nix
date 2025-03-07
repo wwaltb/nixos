@@ -1,5 +1,6 @@
 { lib, ... }: {
   imports = [
+    ./fish
     ./firefox
     ./ghostty
     ./hypr

@@ -13,7 +13,7 @@
       enable = true;
       settings = with config.lib.stylix.colors; {
         general = {
-          "col.active_border" = "rgba(${base06}ff)";
+          "col.active_border" = lib.mkForce "rgba(${base06}ff)";
           #"col.inactive_border" = "rgba(${base03}ff)";
           border_size = 3;
           gaps_in = 4;
