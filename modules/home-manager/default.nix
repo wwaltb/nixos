@@ -1,6 +1,7 @@
 { lib, ... }: {
   imports = [
     ./1password
+    ./fish
     ./firefox
     ./ghostty
     ./hypr
