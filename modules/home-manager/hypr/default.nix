@@ -2,6 +2,7 @@
 {
   imports = [
     ./keys.nix
+    ./waybar
   ];
 
   options = {
@@ -51,5 +52,6 @@
       systemd.variables = [ "--all" ];
     };
     hypr-keys.enable = true;
+    waybar.enable = true;
   };
 }
