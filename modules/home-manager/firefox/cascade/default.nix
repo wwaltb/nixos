@@ -14,7 +14,7 @@
       in
       with config.stylix.colors;
       ''
-        @import "${cascade}/chrome/includes/cascade-config.css";
+        @import "${toString ./config.css}";
         :root {
           /* These colours are (mainly) used by the Container Tabs Plugin */
           --uc-identity-colour-blue: ${base0D};
