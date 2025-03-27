@@ -19,6 +19,7 @@
 
       # lists of plugins
       categoryDefinitions.replace = ({ pkgs, settings, categories, extra, name, mkNvimPlugin, ... }@packageDef: {
+        # programs needed for plugins
         lspsAndRuntimeDeps = {
           lsps = with pkgs; [
             clang-tools
@@ -26,18 +27,15 @@
             nixd
           ];
         };
+        # plugins
         startupPlugins = {
           general = with pkgs.vimPlugins; [
             lze
             snacks-nvim
-          ];
-          mini = with pkgs.vimPlugins; [
             mini-nvim
           ];
-          themer = with pkgs.vimPlugins; [
-            (builtins.getAttr (categories.colorscheme or "kanagawa") {
-              "kanagawa" = kanagawa-nvim;
-            })
+          kanagawa = with pkgs.vimPlugins; [
+            kanagawa-nvim
           ];
         };
         optionalPlugins = {
@@ -58,9 +56,7 @@
           categories = {
             general = true;
             lsps = true;
-            themer = true;
-            colorscheme = "kanagawa";
-            mini = true;
+            kanagawa = true;
           };
         };
       };
