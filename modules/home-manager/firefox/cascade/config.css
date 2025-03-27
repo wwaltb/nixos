@@ -72,7 +72,7 @@
    *  otherwise the URL Bar will always be it's min-width
    */
   --uc-urlbar-min-width: 25vw;
-  --uc-urlbar-max-width: 35vw;
+  --uc-urlbar-max-width: 50vw;
 
   /*  Position of the URL Bar
    *  possible values:

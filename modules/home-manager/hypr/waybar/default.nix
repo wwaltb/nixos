@@ -8,6 +8,7 @@
     programs.waybar = {
       enable = true;
       settings = {
+	bar = {
         margin = "4 8 -4 8";
 
         # Choose the order of the modules
@@ -91,7 +92,7 @@
         timeout = 90.5;
       };
     };
-    style = '''';
+    };
   };
 }
 

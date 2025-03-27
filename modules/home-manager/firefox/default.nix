@@ -1,7 +1,7 @@
 { config, lib, pkgs, inputs, ... }:
 {
   imports = [
-    ./cascade.nix
+    ./cascade
   ];
 
   options = {
