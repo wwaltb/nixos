@@ -7,7 +7,6 @@
   imports = [
     ../../modules/home-manager/default.nix
     inputs.nix-colors.homeManagerModules.default
-    inputs.nvf.homeManagerModules.default
   ];
 
   home = {

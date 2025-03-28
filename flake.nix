@@ -13,10 +13,7 @@
       inputs.hyprland.follows = "hyprland";
     };
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
-    nvf = {
-      url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nix-colors.url = "github:misterio77/nix-colors";
     stylix.url = "github:danth/stylix";
   };

@@ -52,6 +52,7 @@
           settings = {
             wrapRc = true;
             aliases = [ "vi" "vim" ];
+	    neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
           };
           categories = {
             general = true;

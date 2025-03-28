@@ -16,6 +16,8 @@
         settings = {
           # Enable userChrome customizations
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+	  "sidebar.revamp" = true;
+	  "sidebar.verticalTabs" = true;
         };
       };
     };
