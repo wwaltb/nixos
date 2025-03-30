@@ -1,7 +1,6 @@
-{ lib, ... }:
-{
-    imports = [
-        ./kanagawa.nix
-        ./nvidia.nix
-    ];
+{...}: {
+  imports = [
+    ./kanagawa.nix
+    ./nvidia.nix
+  ];
 }

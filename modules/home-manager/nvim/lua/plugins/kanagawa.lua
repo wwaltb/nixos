@@ -32,6 +32,9 @@ return {
 						LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
 						MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
 
+						Pmenu = { bg = theme.ui.bg },
+						BlinkCmpMenuBorder = { link = "FloatBorder" },
+
 						["@markup.heading.1"] = { fg = palette.crystalBlue, bold = true },
 						RenderMarkdownH1Bg = { bg = palette.waveBlue1 },
 						["@markup.heading.2"] = { fg = palette.autumnYellow, bold = true },

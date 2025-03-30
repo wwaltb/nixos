@@ -11,6 +11,7 @@
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.nixPath = [ "nixpgs=${inputs.nixpkgs}" ];
 
   # Use the systemd-boot EFI boot loader
   boot.loader = {

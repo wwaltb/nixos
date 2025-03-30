@@ -1,4 +1,9 @@
-{ config, lib, inputs, ... }: {
+{
+  config,
+  lib,
+  inputs,
+  ...
+}: {
   imports = [
     inputs.nixCats.homeModule
   ];
@@ -14,16 +19,31 @@
       addOverlays = [
         (inputs.nixCats.utils.standardPluginOverlay inputs)
       ];
-      packageNames = [ "nvim" ];
+      packageNames = ["nvim" "testvim"];
       luaPath = "${./.}";
 
       # lists of plugins
-      categoryDefinitions.replace = ({ pkgs, settings, categories, extra, name, mkNvimPlugin, ... }@packageDef: {
+      categoryDefinitions.replace = {
+        pkgs,
+        settings,
+        categories,
+        extra,
+        name,
+        mkNvimPlugin,
+        ...
+      } @ packageDef: {
         # programs needed for plugins
         lspsAndRuntimeDeps = {
           lsps = with pkgs; [
+            # c/c++
             clang-tools
+
+            # lua
             lua-language-server
+            stylua
+
+            # nix
+            alejandra
             nixd
           ];
         };
@@ -31,28 +51,42 @@
         startupPlugins = {
           general = with pkgs.vimPlugins; [
             lze
-            snacks-nvim
             mini-nvim
+            nvim-treesitter.withAllGrammars
           ];
           kanagawa = with pkgs.vimPlugins; [
             kanagawa-nvim
           ];
         };
         optionalPlugins = {
-          general = [
-
+          general = with pkgs.vimPlugins; [
+            blink-cmp
+            conform-nvim
+            harpoon2
+            which-key-nvim
           ];
         };
-
-      });
+      };
 
       # package to wrap neovim and desired plugins
       packageDefinitions.replace = {
-        nvim = { pkgs, ... }: {
+        nvim = {pkgs, ...}: {
           settings = {
             wrapRc = true;
-            aliases = [ "vi" "vim" ];
-	    neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+            aliases = ["vi" "vim"];
+          };
+          categories = {
+            general = true;
+            lsps = true;
+            kanagawa = true;
+          };
+        };
+        testvim = {pkgs, ...}: {
+          settings = {
+            wrapRc = false;
+            unwrappedCfgPath = "/home/walt/nixos/modules/home-manager/nvim";
+            aliases = ["tvim"];
+            #neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
           };
           categories = {
             general = true;
