@@ -1,17 +1,21 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, lib, pkgs, inputs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
     inputs.stylix.nixosModules.stylix
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.nixPath = [ "nixpgs=${inputs.nixpkgs}" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.nixPath = ["nixpgs=${inputs.nixpkgs}"];
 
   # Use the systemd-boot EFI boot loader
   boot.loader = {
@@ -88,12 +92,13 @@
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {inherit inputs;};
     backupFileExtension = "backup";
     users.walt = import ./home.nix;
   };
 
   programs.fish.enable = true;
+  programs.neovim.enable = true;
   programs.hyprland.enable = true;
 
   # List packages installed in system profile. To search, run:
@@ -103,6 +108,11 @@
     wget
     tree
   ];
+
+  environment.variables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -125,4 +135,3 @@
 
   system.stateVersion = "24.11"; # Do not change
 }
-
