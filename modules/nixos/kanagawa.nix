@@ -14,6 +14,13 @@
       image = ../../assets/bus-wallpaper.png;
       imageScalingMode = "center";
       base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
+
+      # should probably decouple this with general stylix options
+      cursor = {
+        package = pkgs.hackneyed;
+        name = "Hackneyed";
+        size = 24;
+      };
     };
   };
 }

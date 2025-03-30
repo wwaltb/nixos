@@ -15,6 +15,8 @@
       enableFishIntegration = true;
       settings = {
         window-decoration = false;
+        window-padding-x = "2, 0";
+        resize-overlay = "never";
       };
     };
   };

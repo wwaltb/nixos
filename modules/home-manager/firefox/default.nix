@@ -1,5 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./cascade
   ];
@@ -16,11 +21,12 @@
         settings = {
           # Enable userChrome customizations
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-	  "sidebar.revamp" = true;
-	  "sidebar.verticalTabs" = true;
+          "sidebar.revamp" = true;
+          "sidebar.verticalTabs" = true;
         };
       };
     };
     cascade.enable = true;
+    stylix.targets.firefox.profileNames = ["default"];
   };
 }
