@@ -30,7 +30,6 @@
       specialArgs = {inherit inputs;};
       modules = [
         ./hosts/jonsbo6/configuration.nix
-        ./modules/nixos/default.nix
       ];
     };
   };

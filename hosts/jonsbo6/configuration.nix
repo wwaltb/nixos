@@ -10,12 +10,13 @@
 }: {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/nixos/default.nix
+
     inputs.home-manager.nixosModules.default
     inputs.stylix.nixosModules.stylix
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.nixPath = ["nixpgs=${inputs.nixpkgs}"];
 
   # Use the systemd-boot EFI boot loader
   boot.loader = {
@@ -107,6 +108,7 @@
     git
     wget
     tree
+    devenv
   ];
 
   environment.variables = {
