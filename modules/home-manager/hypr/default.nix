@@ -48,6 +48,7 @@
           force_default_wallpaper = 0;
           #background_color = "0x${base00}";
         };
+        exec-once = "1password --silent";
       };
       systemd.variables = [ "--all" ];
     };

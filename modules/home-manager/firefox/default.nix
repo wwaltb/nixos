@@ -1,9 +1,8 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
+{ config
+, lib
+, pkgs
+, inputs
+, ...
 }: {
   imports = [
     ./cascade
@@ -24,9 +23,13 @@
           "sidebar.revamp" = true;
           "sidebar.verticalTabs" = true;
         };
+        extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+          ublock-origin
+          onepassword-password-manager
+        ];
       };
     };
     cascade.enable = true;
-    stylix.targets.firefox.profileNames = ["default"];
+    stylix.targets.firefox.profileNames = [ "default" ];
   };
 }
