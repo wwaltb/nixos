@@ -32,6 +32,7 @@
   nix.optimise.automatic = true;
 
   nixpkgs.config.allowUnfree = true;
+
   nvidia.enable = true;
 
   # stylix theme
@@ -93,6 +94,7 @@
   };
 
   home-manager = {
+    useGlobalPkgs = true;
     extraSpecialArgs = {inherit inputs;};
     backupFileExtension = "backup";
     users.walt = import ./home.nix;

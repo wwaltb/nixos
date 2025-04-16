@@ -15,6 +15,8 @@
         "--max-columns-preview"
         "--hidden"
 
+        "--glob=!.git/*"
+
         "--glob=!.cache/*"
         "--glob=!SteamLibrary/*"
         "--glob=!.steampath/*"
