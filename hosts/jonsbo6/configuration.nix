@@ -18,6 +18,7 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
+  # needed for things like devenv, which use the nix store when run
   nix.settings.trusted-users = ["root" "@wheel"];
 
   # Use the systemd-boot EFI boot loader
