@@ -41,6 +41,8 @@
   # stylix theme
   kanagawa.enable = true;
 
+  steam.enable = true;
+
   networking = {
     hostName = "jonsbo6"; # Define your hostname.
     networkmanager.enable = true;
@@ -114,6 +116,7 @@
     wget
     tree
     devenv
+    direnv
   ];
 
   environment.variables = {
