@@ -1,5 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./keys.nix
     ./waybar
@@ -49,10 +54,11 @@
           #background_color = "0x${base00}";
         };
         exec-once = "1password --silent";
+        windowrulev2 = "noborder,class:(steam_app_200210),title:^((?!Launcher).)*$";
       };
-      systemd.variables = [ "--all" ];
+      systemd.variables = ["--all"];
     };
-    hypr-keys.enable = true;
-    waybar.enable = true;
+    hyprland.keys.enable = true;
+    hyprland.waybar.enable = true;
   };
 }
