@@ -18,6 +18,7 @@
         window-padding-x = "4";
         window-padding-y = "4";
         resize-overlay = "never";
+        working-directory = "home";
       };
     };
   };

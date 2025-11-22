@@ -26,6 +26,8 @@
             "super, k, movefocus, u"
             "super, l, movefocus, r"
 
+            "super, v, togglefloating"
+
             ## misc ##
 
             # launch applications
