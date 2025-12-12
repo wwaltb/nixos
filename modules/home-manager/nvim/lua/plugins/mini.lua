@@ -34,7 +34,7 @@ return {
 			{ "<C-s>", require("mini.files").open, desc = "Open mini files" },
 			{ "<leader>fb", require("mini.pick").builtin.buffers, desc = "Buffers" },
 			{ "<leader>fh", require("mini.pick").builtin.help, desc = "Help" },
-			{ "<leader>ff", require("mini.pick").builtin.files, desc = "Files" },
+			{ "<C-f>", require("mini.pick").builtin.files, desc = "Files" },
 			{ "<leader>fg", require("mini.pick").builtin.grep_live, desc = "Grep" },
 			{
 				"gO",

@@ -53,6 +53,7 @@
             lze
             mini-nvim
             nvim-treesitter.withAllGrammars
+            pkgs.neovimPlugins.dooing
           ];
           kanagawa = with pkgs.vimPlugins; [
             kanagawa-nvim
@@ -86,7 +87,7 @@
             wrapRc = false;
             unwrappedCfgPath = "/home/walt/nixos/modules/home-manager/nvim";
             aliases = ["tvim"];
-            #neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+            neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
           };
           categories = {
             general = true;

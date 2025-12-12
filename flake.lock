@@ -751,6 +751,22 @@
         "type": "github"
       }
     },
+    "plugins-dooing": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1763989902,
+        "narHash": "sha256-a6gHo2vyur5G6QHFbxCZ8n3iUuwCcUdFoKruvq/fye4=",
+        "owner": "atiladefreitas",
+        "repo": "dooing",
+        "rev": "3372daa1d0bd8e783200e2deea644bdff53e53b0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "atiladefreitas",
+        "repo": "dooing",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -784,6 +800,7 @@
         "nix-colors": "nix-colors",
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs_3",
+        "plugins-dooing": "plugins-dooing",
         "stylix": "stylix"
       }
     },
