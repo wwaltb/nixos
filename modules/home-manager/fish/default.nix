@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   options = {
     fish.enable = lib.mkEnableOption "enables fish configuration";
   };
@@ -13,7 +17,11 @@
         set -g fish_color_param ${base0E}
         set -g fish_color_error ${base0F}
         set -g fish_color_comment ${base04}
+
+        set -g fish_greeting ""
       '';
     };
+
+    programs.direnv.enableFishIntegration = true;
   };
 }
