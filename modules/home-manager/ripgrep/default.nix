@@ -1,13 +1,10 @@
 {
   config,
   lib,
+  osConfig,
   ...
 }: {
-  options = {
-    ripgrep.enable = lib.mkEnableOption "ripgrep";
-  };
-
-  config = lib.mkIf config.ripgrep.enable {
+  config = lib.mkIf osConfig.features.ripgrep.enable {
     programs.ripgrep = {
       enable = true;
       arguments = [

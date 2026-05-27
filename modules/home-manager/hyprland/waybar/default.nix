@@ -1,15 +1,9 @@
 {
-  config,
   lib,
-  pkgs,
-  inputs,
+  osConfig,
   ...
 }: {
-  options = {
-    hyprland.waybar.enable = lib.mkEnableOption "enables waybar for hyprland";
-  };
-
-  config = lib.mkIf config.hyprland.waybar.enable {
+  config = lib.mkIf osConfig.features.hyprland.waybar.enable {
     programs.waybar = {
       enable = true;
       settings = {

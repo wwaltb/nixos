@@ -4,11 +4,7 @@
   pkgs,
   ...
 }: {
-  options = {
-    steam.enable = lib.mkEnableOption "steam configuration";
-  };
-
-  config = lib.mkIf config.steam.enable {
+  config = lib.mkIf config.features.steam.enable {
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true;

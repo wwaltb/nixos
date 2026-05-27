@@ -3,43 +3,47 @@
   lib,
   pkgs,
   inputs,
+  osConfig,
   ...
 }: {
-  options = {
-    tofi.enable = lib.mkEnableOption "tofi config";
-  };
-
-  config = lib.mkIf config.tofi.enable {
+  config = lib.mkIf osConfig.features.tofi.enable {
+    stylix.targets.tofi.enable = false;
     programs.tofi = {
       enable = true;
-      settings = {
+      settings = with config.lib.stylix.colors; {
         # Text theming #
-        prompt-text = "> ";
+        font = "${config.stylix.fonts.monospace.package}/share/fonts/opentype/NerdFonts/FiraMono/FiraMonoNerdFont-Regular.otf";
+        font-size = config.stylix.fonts.sizes.terminal + 1;
+
+        text-cursor = "true";
         text-cursor-style = "bar";
         text-cursor-thickness = "1";
 
-        # text-color = "#c8c093";
+        text-color = "${base06}";
 
-        # selection-color = "#c8c093";
-        # selection-background = "#54546d77";
+        selection-color = "${base06}";
+        selection-background = "${base03}77";
         selection-background-padding = "0, -1";
 
-        # input-color = "#7E9CD8";
-        # input-background = "#16161D";
-        input-background-padding = "0, 10";
-        # prompt-color = "#7E9CD8";
-        # prompt-background = "#16161D";
-        prompt-background-padding = "0, 22";
+        input-color = "${base0D}";
+        input-background = "${base01}";
+        input-background-padding = "0, 0, 8, 0";
+
+        prompt-text = "> ";
+        prompt-color = "${base0D}";
+        prompt-padding = "8";
+        prompt-background = "${base01}";
+        prompt-background-padding = "0, 8";
 
         # Window theming #
         width = "30%";
         height = "50%";
-        # background-color = "#1f1f28";
+        background-color = "${base00}";
 
-        outline-width = "4";
-        # outline-color = "#1f1f28";
+        outline-width = "6";
+        outline-color = "${base00}";
         border-width = "1";
-        # border-color = "#54546d";
+        border-color = "${base03}";
 
         padding-top = "0";
         padding-bottom = "0";

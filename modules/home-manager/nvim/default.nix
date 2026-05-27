@@ -1,18 +1,14 @@
 {
-  config,
   lib,
   inputs,
+  osConfig,
   ...
 }: {
   imports = [
     inputs.nixCats.homeModule
   ];
 
-  options = {
-    nvim.enable = lib.mkEnableOption "enables neovim";
-  };
-
-  config = lib.mkIf config.nvim.enable {
+  config = lib.mkIf osConfig.features.nvim.enable {
     nixCats = {
       enable = true;
       nixpkgs_version = inputs.nixpkgs;
@@ -87,7 +83,7 @@
             wrapRc = false;
             unwrappedCfgPath = "/home/walt/nixos/modules/home-manager/nvim";
             aliases = ["tvim"];
-            neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+            neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
           };
           categories = {
             general = true;

@@ -10,16 +10,16 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/nixos/default.nix
+    ../../modules/nixos
 
     inputs.home-manager.nixosModules.default
     inputs.stylix.nixosModules.stylix
   ];
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-
-  # needed for things like devenv, which use the nix store when run
-  nix.settings.trusted-users = ["root" "@wheel"];
+  nix.settings = {
+    experimental-features = ["nix-command" "flakes"];
+    trusted-users = ["root" "@wheel"];
+  };
 
   # Use the systemd-boot EFI boot loader
   boot.loader = {
@@ -27,6 +27,7 @@
     efi.canTouchEfiVariables = true;
   };
 
+  # Collect nix garbage and optimise the nix store automatically
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -34,17 +35,11 @@
   };
   nix.optimise.automatic = true;
 
+  # Allow closed source software like nvidia drivers
   nixpkgs.config.allowUnfree = true;
 
-  nvidia.enable = true;
-
-  # stylix theme
-  kanagawa.enable = true;
-
-  steam.enable = true;
-
   networking = {
-    hostName = "jonsbo6"; # Define your hostname.
+    hostName = "jonsbo6";
     networkmanager.enable = true;
   };
 
@@ -53,64 +48,33 @@
     powerOnBoot = true;
   };
 
-  # Set your time zone.
   time.timeZone = "America/Los_Angeles";
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #     font = "Lat2-Terminus16";
-  #     keyMap = "us";
-  #     useXkbConfig = true; # use xkb.options in tty.
-  # };
 
-  # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
+  services = {
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable sound.
-  # hardware.pulseaudio.enable = true;
-  # OR
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
+    openssh.enable = true;
+    tailscale.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.walt = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel" # Enable ‘sudo’ for the user.
-      "networkmanager"
-    ];
-    shell = pkgs.fish;
+  features = {
+    kanagawa.enable = true;
+    nvidia.enable = true;
+    steam.enable = true;
   };
 
-  home-manager = {
-    useGlobalPkgs = true;
-    extraSpecialArgs = {inherit inputs;};
-    backupFileExtension = "backup";
-    users.walt = import ./home.nix;
+  programs = {
+    fish.enable = true;
+    neovim.enable = true;
+    hyprland.enable = true;
   };
 
-  programs.fish.enable = true;
-  programs.neovim.enable = true;
-  programs.hyprland.enable = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     git
     wget
@@ -124,20 +88,24 @@
     VISUAL = "nvim";
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.walt = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel" # Enable ‘sudo’ for the user.
+      "networkmanager"
+      "dialout"
+    ];
+    shell = pkgs.fish;
+  };
 
-  # List services that you want to enable:
+  home-manager = {
+    useGlobalPkgs = true;
+    extraSpecialArgs = {inherit inputs;};
+    backupFileExtension = "backup";
+    users.walt = import ./home.nix;
+  };
 
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
-  services.tailscale.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

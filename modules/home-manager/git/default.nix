@@ -1,20 +1,16 @@
 {
-  config,
   lib,
-  pkgs,
-  inputs,
+  osConfig,
   ...
 }: {
-  options = {
-    git.enable = lib.mkEnableOption "git config";
-  };
-
-  config = lib.mkIf config.git.enable {
+  config = lib.mkIf osConfig.features.git.enable {
     programs.git = {
       enable = true;
-      userName = "wwaltb";
-      userEmail = "wwaltb@proton.me";
-      extraConfig = {
+      settings = {
+        user = {
+          name = "wwaltb";
+          email = "wwaltb@proton.me";
+        };
         pull.rebase = "false";
         init.defaultbranch = "main";
       };

@@ -1,19 +1,15 @@
 {
-  config,
   lib,
   pkgs,
   inputs,
+  osConfig,
   ...
 }: {
   imports = [
     ./cascade
   ];
 
-  options = {
-    firefox.enable = lib.mkEnableOption "enables firefox";
-  };
-
-  config = lib.mkIf config.firefox.enable {
+  config = lib.mkIf osConfig.features.firefox.enable {
     programs.firefox = {
       enable = true;
       profiles.default = {
@@ -24,7 +20,7 @@
           "sidebar.revamp" = true;
           "sidebar.verticalTabs" = true;
         };
-        extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+        extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
           ublock-origin
           #onepassword-password-manager cant get unfree to work in home manager right now
         ];

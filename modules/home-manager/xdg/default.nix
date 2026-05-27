@@ -2,13 +2,10 @@
   config,
   lib,
   pkgs,
+  osConfig,
   ...
 }: {
-  options = {
-    xdg-dirs.enable = lib.mkEnableOption "enables xdg configuration";
-  };
-
-  config = lib.mkIf config.xdg-dirs.enable {
+  config = lib.mkIf osConfig.features.xdg-dirs.enable {
     xdg.userDirs = {
       enable = true;
       createDirectories = true;

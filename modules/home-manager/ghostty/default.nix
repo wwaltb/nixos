@@ -1,15 +1,9 @@
 {
-  config,
   lib,
-  pkgs,
-  inputs,
+  osConfig,
   ...
 }: {
-  options = {
-    ghostty.enable = lib.mkEnableOption "enables ghostty";
-  };
-
-  config = lib.mkIf config.ghostty.enable {
+  config = lib.mkIf osConfig.features.ghostty.enable {
     programs.ghostty = {
       enable = true;
       enableFishIntegration = true;

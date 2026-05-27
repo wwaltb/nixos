@@ -1,14 +1,14 @@
 {
   config,
   lib,
-  pkgs,
+  osConfig,
   ...
 }: {
   options = {
     fish.enable = lib.mkEnableOption "enables fish configuration";
   };
 
-  config = lib.mkIf config.fish.enable {
+  config = lib.mkIf osConfig.features.fish.enable {
     programs.fish = {
       enable = true;
       shellInit = with config.lib.stylix.colors; ''
@@ -18,7 +18,9 @@
         set -g fish_color_error ${base0F}
         set -g fish_color_comment ${base04}
 
-        set -g fish_greeting ""
+      '';
+      interactiveShellInit = ''
+        set -g fish_greeting
       '';
     };
 

@@ -3,11 +3,7 @@
   lib,
   ...
 }: {
-  options = {
-    nvidia.enable = lib.mkEnableOption "nvidia configuration";
-  };
-
-  config = lib.mkIf config.nvidia.enable {
+  config = lib.mkIf config.features.nvidia.enable {
     hardware.graphics = {
       enable = true;
     };
@@ -20,7 +16,7 @@
       powerManagement.finegrained = false;
       open = false;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
     };
   };
 }

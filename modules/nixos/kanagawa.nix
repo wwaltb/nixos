@@ -4,11 +4,7 @@
   pkgs,
   ...
 }: {
-  options = {
-    kanagawa.enable = lib.mkEnableOption "enables kanagawa stylix configuration";
-  };
-
-  config = lib.mkIf config.kanagawa.enable {
+  config = lib.mkIf config.features.kanagawa.enable {
     stylix = {
       enable = true;
       image = ../../assets/bus-wallpaper.png;
@@ -36,6 +32,8 @@
           name = "DejaVu Serif";
         };
       };
+
+      targets.gtksourceview.enable = false;
     };
   };
 }

@@ -14,10 +14,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
+    # hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland-plugins = {
+    #   url = "github:hyprwm/hyprland-plugins";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
+    tofi-src = {
+      url = "github:philj56/tofi";
+      flake = false;
     };
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
@@ -34,6 +38,7 @@
   outputs = {
     self,
     nixpkgs,
+    tofi-src,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -43,6 +48,15 @@
       specialArgs = {inherit inputs;};
       modules = [
         ./hosts/jonsbo6/configuration.nix
+        {
+          nixpkgs.overlays = [
+            (final: prev: {
+              tofi = prev.tofi.overrideAttrs (_: {
+                src = tofi-src;
+              });
+            })
+          ];
+        }
       ];
     };
   };
