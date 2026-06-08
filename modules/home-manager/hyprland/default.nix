@@ -53,7 +53,9 @@
           };
         };
 
-        on = lib.optional osConfig.features._1password.enable {
+        # not sure if lib.mkIf or lib.optional is correct here, since on can be
+        # a list or attribute set?
+        on = lib.mkIf osConfig.features._1password.enable {
           _args = [
             "hyprland.start"
             (lib.generators.mkLuaInline "function()\n hl.exec_cmd(\"1password --silent\")\nend")

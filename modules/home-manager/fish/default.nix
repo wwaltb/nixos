@@ -4,10 +4,6 @@
   osConfig,
   ...
 }: {
-  options = {
-    fish.enable = lib.mkEnableOption "enables fish configuration";
-  };
-
   config = lib.mkIf osConfig.features.fish.enable {
     programs.fish = {
       enable = true;

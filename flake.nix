@@ -14,6 +14,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixcord = {
+      url = "github:FlameFlag/nixcord";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # hyprland.url = "github:hyprwm/Hyprland";
     # hyprland-plugins = {
     #   url = "github:hyprwm/hyprland-plugins";

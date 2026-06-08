@@ -8,6 +8,7 @@
   imports = [
     ../../modules/home-manager/default.nix
     inputs.nix-colors.homeManagerModules.default
+    inputs.nixcord.homeModules.nixcord
   ];
 
   home = {
@@ -16,7 +17,6 @@
 
     packages = with pkgs; [
       pavucontrol
-      discord
     ];
   };
 
