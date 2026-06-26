@@ -24,6 +24,7 @@
   # Use the systemd-boot EFI boot loader
   boot.loader = {
     systemd-boot.enable = true;
+    systemd-boot.configurationLimit = 5;
     efi.canTouchEfiVariables = true;
   };
 
@@ -105,7 +106,6 @@
     backupFileExtension = "backup";
     users.walt = import ./home.nix;
   };
-
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

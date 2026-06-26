@@ -4,11 +4,19 @@
   ...
 }: {
   config = lib.mkIf osConfig.features.discord.enable {
-    programs.nixcord.legcord = {
+    programs.nixcord = {
       enable = true;
-      vencord.enable = true;
-      settings = {
-        mods = ["vencord"];
+      discord = {
+        krisp.enable = true;
+      };
+
+      legcord = {
+        enable = true;
+        vencord.enable = true;
+        settings = {
+          mods = ["vencord"];
+          hardwareAcceleration = true;
+        };
       };
     };
   };

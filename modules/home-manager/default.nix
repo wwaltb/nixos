@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./discord
     ./fish
     ./firefox
     ./git
@@ -7,6 +8,7 @@
     ./hyprland
     ./nvim
     ./ripgrep
+    ./rmpc
     ./tofi
     ./xdg
   ];
