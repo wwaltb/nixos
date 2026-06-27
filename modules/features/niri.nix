@@ -30,7 +30,7 @@
         };
 
         binds = {
-          "Mod+D".close-window = null;
+          "Mod+D".close-window = _: { };
           "Mod+Semicolon".spawn-sh = lib.getExe pkgs.ghostty;
           "Mod+Shift+Semicolon".spawn-sh = lib.getExe pkgs.firefox;
         };
