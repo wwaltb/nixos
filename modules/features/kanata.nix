@@ -9,17 +9,20 @@
       keyboards.thinkpad = {
         devices = [
           "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
-          "/dev/input/by-path/platform-i8042-serio-1-event-mouse"
+          "/dev/input/by-path/platform-i8042-serio-2-event-mouse"
         ];
         extraDefCfg = ''
-          linux-use-trackpoint-property yes
           process-unmapped-keys yes
+
+          linux-use-trackpoint-property yes
+	  mouse-movement-key mvmt
+
           concurrent-tap-hold yes
           rapid-event-delay 5
         '';
         config = ''
-          ;; If you are looking for other keys, the file src/keys/mod.rs should hopefully
-          ;; provide some insight.
+	  ;; If you are looking for other keys, the file src/keys/mod.rs
+	  ;; should hopefully provide some insight.
           (defsrc
             esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  home end  ins  del
             grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
@@ -27,7 +30,7 @@
             caps a    s    d    f    g    h    j    k    l    ;    '    ret
             lsft z    x    c    v    b    n    m    ,    .    /    rsft
             wkup lctl lmet lalt      spc            ralt prnt rctl pgup up   pgdn
-            F24                                                    left down rght
+            mvmt                                                   left down rght
           )
 
           #|
@@ -120,8 +123,8 @@
             ;; enable function keys
             wkf (tap-hold-release 200 200 wkup @fn)
 
-            ;; this alias allows smooth typing by going to a safe layer once any tap-hold
-            ;; on qwerty keys is tapped
+	    ;; this alias allows smooth typing by going to a safe layer once
+	    ;; any tap-hold on qwerty keys is tapped
             tap (multi
               (layer-switch typing)
               (on-idle 75 tap-virtualkey to-base)

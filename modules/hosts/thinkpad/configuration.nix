@@ -17,6 +17,7 @@
     imports = [
       self.nixosModules.thinkpadHardware
 
+      self.nixosModules.kanata
       self.nixosModules.niri
     ];
 
