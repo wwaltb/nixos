@@ -3,13 +3,26 @@
   inputs,
   ...
 }: {
-  flake.nixosModules.kanata = {pkgs, ...}: {
+  flake.modules.nixos.kanata = {pkgs, ...}: {
+    services.udev.extraRules = ''
+      SUBSYSTEM=="input", \
+      ENV{ID_BUS}=="i8042", \
+      ENV{ID_INPUT_POINTINGSTICK}=="1", \
+      SYMLINK+="input/trackpoint-stable"
+    '';
+    services.libinput = {
+      enable = true;
+      mouse = {
+        dev = "/dev/input/trackpoint-stable";
+	accelSpeed = "0.5";
+      };
+    };
     services.kanata = {
       enable = true;
       keyboards.thinkpad = {
         devices = [
           "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
-          "/dev/input/by-path/platform-i8042-serio-2-event-mouse"
+	  "/dev/input/trackpoint-stable"
         ];
         extraDefCfg = ''
           process-unmapped-keys yes

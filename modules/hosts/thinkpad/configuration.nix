@@ -5,21 +5,25 @@
 }: {
   flake.nixosConfigurations.thinkpad = inputs.nixpkgs.lib.nixosSystem {
     modules = [
-      self.nixosModules.thinkpadConfiguration
+      self.modules.nixos.thinkpadConfiguration
     ];
   };
 
-  flake.nixosModules.thinkpadConfiguration = {
+  flake.modules.nixos.thinkpadConfiguration = {
     pkgs,
     lib,
     ...
   }: {
-    imports = [
-      self.nixosModules.thinkpadHardware
+    imports = with self.modules.nixos; [
+      thinkpadHardware
 
-      self.nixosModules.kanata
-      self.nixosModules.niri
+      kanagawa
+      kanata
+      neovim
+      niri
     ];
+
+    nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     # Use the systemd-boot EFI boot loader.
     boot.loader.systemd-boot.enable = true;
@@ -69,13 +73,14 @@
 
     environment.systemPackages = with pkgs; [
       wget
-      neovim
       git
     ];
 
     # Enable the OpenSSH daemon.
     services.openssh.enable = true;
     services.openssh.settings.PasswordAuthentication = false;
+
+    services.tailscale.enable = true;
 
     system.stateVersion = "26.05";
   };

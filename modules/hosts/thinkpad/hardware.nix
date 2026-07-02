@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  flake.nixosModules.thinkpadHardware = {
+  flake.modules.nixos.thinkpadHardware = {
     config,
     lib,
     pkgs,
