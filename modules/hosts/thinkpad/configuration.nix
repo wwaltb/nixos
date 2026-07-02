@@ -9,11 +9,7 @@
     ];
   };
 
-  flake.modules.nixos.thinkpadConfiguration = {
-    pkgs,
-    lib,
-    ...
-  }: {
+  flake.modules.nixos.thinkpadConfiguration = {pkgs, ...}: {
     imports = with self.modules.nixos; [
       thinkpadHardware
 
@@ -29,9 +25,19 @@
     nix.settings.experimental-features = ["nix-command" "flakes"];
 
     # Use the systemd-boot EFI boot loader.
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.systemd-boot.consoleMode = "max";
-    boot.loader.efi.canTouchEfiVariables = true;
+    boot.loader = {
+      efi.canTouchEfiVariables = true;
+
+      grub = {
+        enable = true;
+        efiSupport = true;
+        device = "nodev";
+        gfxmodeEfi = "1920x1080";
+        # gfxpayloadEfi = "text";
+      };
+
+      systemd-boot.enable = false;
+    };
 
     networking.hostName = "thinkpad";
 

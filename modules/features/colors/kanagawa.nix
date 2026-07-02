@@ -3,8 +3,8 @@
   inputs,
   ...
 }: {
-  flake.modules.nixos.kanagawa = { pkgs, ... }: {
-    imports = [ inputs.stylix.nixosModules.stylix ];
+  flake.modules.nixos.kanagawa = {pkgs, ...}: {
+    imports = [inputs.stylix.nixosModules.stylix];
 
     stylix = {
       enable = true;
