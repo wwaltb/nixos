@@ -60,7 +60,7 @@
           binds = {
             "Mod+D".close-window = _: {};
             "Mod+Semicolon".spawn-sh = lib.getExe pkgs.ghostty;
-            "Mod+Shift+Semicolon".spawn-sh = lib.getExe pkgs.firefox;
+            "Mod+Shift+Semicolon".spawn-sh = lib.getExe pkgs.librewolf;
 
             "Mod+H".focus-column-or-monitor-left = _: {};
             "Mod+J".focus-window-or-workspace-down = _: {};
