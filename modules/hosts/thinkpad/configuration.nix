@@ -21,6 +21,9 @@
       kanata
       neovim
       niri
+
+      homeManager
+      ghostty
     ];
 
     nix.settings.experimental-features = ["nix-command" "flakes"];
