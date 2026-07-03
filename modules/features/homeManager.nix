@@ -5,6 +5,7 @@
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
+      backupFileExtension = "hm.bak";
       users.walt.config.home.stateVersion = "26.05";
     };
   };

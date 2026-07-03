@@ -11,19 +11,16 @@
 
   flake.modules.nixos.thinkpadConfiguration = {pkgs, ...}: {
     imports = with self.modules.nixos; [
-      # hardware configuration
       thinkpadHardware
 
-      # pure nixos configuration
+      fish
+      ghostty
+      homeManager
+      librewolf
       kanagawa
       kanata
       neovim
       niri
-
-      # involving home manager configuration
-      homeManager
-      ghostty
-      librewolf
     ];
 
     nix.settings.experimental-features = ["nix-command" "flakes"];
