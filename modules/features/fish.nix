@@ -45,33 +45,30 @@
 
         directory = {
           style = "green";
-          truncation_length = 0;
+          truncation_length = 3;
           truncate_to_repo = false;
         };
 
         git_branch = {
           symbol = "";
           style = "bold purple";
-          format = "[$symbol$branch]($style) ";
+          format = "[\\($symbol$branch]($style)";
         };
 
         git_status = {
-          # style = "purple";
-          # format = "([\\[$all_status$ahead_behind\\]]($style) )";
-          # conflicted = "✖";
-          # untracked = "";
+          style = "bold purple";
+          format = "[:$ahead_behind$all_status\\)]($style) ";
+          # format = "([\\[$staged$conflicted$modified$untracked$stashed\\]]($style) )";
           modified = "[✚\${count}](blue)";
           staged = "[●\${count}](yellow)";
-          # renamed = "»";
-          # deleted = "✘";
-          # stashed = "\$";
-          # ahead = "↑\${count}";
-          # behind = "↓\${count}";
-          # diverged = "↕↑\${ahead_count}↓\${behind_count}";
-          style = "purple"; # leave empty; colors are embedded per-symbol below
-          format = "([\\[$staged$conflicted$modified$untracked$stashed\\]]($style) )";
-          conflicted = "[✖\${count}](red)"; # red, matches __fish_git_prompt_color_invalidstate
-          untracked = "[✚\${count}](green)"; # normal color, matches $fish_color_normal
+          renamed = "[»\${count}](blue)";
+          deleted = "[✖\${count}](red)";
+          # ahead = "[↑\${count}](orange)";
+          ahead = "";
+          behind = "[↓\${count}](orange)";
+          diverged = "[↕↑\${ahead_count}↓\${behind_count}](orange)";
+          conflicted = "[\${count}](red)";
+          untracked = "[✚\${count}](green)";
           stashed = "⚑\${count}";
           up_to_date = "";
         };
