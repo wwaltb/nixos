@@ -52,19 +52,18 @@
         git_branch = {
           symbol = "";
           style = "bold purple";
-          format = "[\\($symbol$branch]($style)";
+          format = "[\\[$symbol$branch]($style)";
         };
 
         git_status = {
           style = "bold purple";
-          format = "[:$ahead_behind$all_status\\)]($style) ";
+          format = "[$ahead_behind$all_status\\]]($style) ";
           # format = "([\\[$staged$conflicted$modified$untracked$stashed\\]]($style) )";
           modified = "[✚\${count}](blue)";
-          staged = "[●\${count}](yellow)";
+          staged = "[\${count}](yellow)";
           renamed = "[»\${count}](blue)";
           deleted = "[✖\${count}](red)";
-          # ahead = "[↑\${count}](orange)";
-          ahead = "";
+          ahead = "[↑\${count}](orange)";
           behind = "[↓\${count}](orange)";
           diverged = "[↕↑\${ahead_count}↓\${behind_count}](orange)";
           conflicted = "[\${count}](red)";
@@ -89,8 +88,8 @@
         };
 
         character = {
-          success_symbol = "[❯](bold brown)";
-          error_symbol = "[❯](bold brown)";
+          success_symbol = "[>](bold brown)";
+          error_symbol = "[>](bold brown)";
         };
       };
     };
