@@ -14,8 +14,7 @@
       package = inputs.wrapper-modules.wrappers.niri.wrap {
         inherit pkgs;
         settings = {
-          spawn-at-startup = [
-          ];
+          spawn-at-startup = [];
 
           layout = {
             gaps = 6;
@@ -59,7 +58,7 @@
 
           binds = {
             "Mod+D".close-window = _: {};
-            "Mod+Semicolon".spawn-sh = lib.getExe pkgs.ghostty;
+            "Mod+Semicolon".spawn-sh = "${lib.getExe pkgs.ghostty} +new-window";
             "Mod+Shift+Semicolon".spawn-sh = lib.getExe pkgs.librewolf;
 
             "Mod+H".focus-column-or-monitor-left = _: {};

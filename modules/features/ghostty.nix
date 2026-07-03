@@ -8,6 +8,7 @@
   flake.modules.homeManager.ghostty = {
     programs.ghostty = {
       enable = true;
+      systemd.enable = true;
       settings = {
         window-decoration = false;
         window-padding-x = "4";
