@@ -2,6 +2,7 @@
 order = [ "default" ]
 
     [bar.default]
+    background_opacity = 0.0
     capsule_radius = 4
     capsule_thickness = 0.99999998137354851
     center = [ "group:g1" ]
@@ -30,6 +31,18 @@ warning_threshold = 20
 
 [brightness]
 minimum_brightness = 0.0099999997764825821
+
+[[control_center.shortcuts]]
+type = "wifi"
+
+[[control_center.shortcuts]]
+type = "bluetooth"
+
+[[control_center.shortcuts]]
+type = "nightlight"
+
+[[control_center.shortcuts]]
+type = "notification"
 
 [desktop_widgets]
 schema_version = 2
@@ -114,17 +127,31 @@ widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-widget-00000000000000
 enabled = true
 temperature_night = 5000
 
+[notification]
+offset_x = 4
+offset_y = 4
+position = "top_left"
+
+[osd]
+offset_x = 4
+offset_y = 4
+position = "top_right"
+position_vertical = "bottom_right"
+
 [shell]
 corner_radius_scale = 0.30000000447034836
 
     [shell.animation]
     enabled = false
 
+    [shell.launcher]
+    show_icons = false
+
     [shell.panel]
     control_center_placement = "floating"
     control_center_position = "top_right"
     floating_offset = 4
-    open_near_click_control_center = true
+    open_near_click_control_center = false
     session_placement = "floating"
     shadow = false
     wallpaper_placement = "floating"
@@ -135,6 +162,9 @@ community_palette = "Kanagawa Paper"
 mode = "dark"
 source = "builtin"
 wallpaper_scheme = "m3-content"
+
+[wallpaper]
+enabled = false
 
 [weather]
 effects = false
