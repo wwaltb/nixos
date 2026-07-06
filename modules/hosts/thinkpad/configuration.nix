@@ -22,6 +22,7 @@
       neovim
       niri
       noctalia
+      powerManagement
     ];
 
     nix.settings.experimental-features = ["nix-command" "flakes"];
