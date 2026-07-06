@@ -14,7 +14,7 @@
           noctalia = inputs.noctalia.packages.${system}.default;
           noctaliaExe = lib.getExe noctalia;
         in {
-          spawn-at-startup = [
+          spawn-sh-at-startup = [
             "${noctaliaExe}"
           ];
 
@@ -25,6 +25,7 @@
               width = 3;
               active-color = "#${config.lib.stylix.colors.base06}";
               inactive-color = "#${config.lib.stylix.colors.base03}";
+              urgent-color = "#${config.lib.stylix.colors.base08}";
             };
             background-color = "#${config.lib.stylix.colors.base00}";
 
@@ -129,6 +130,10 @@
 
             overview {
               backdrop-color "#${config.lib.stylix.colors.base01}"
+            }
+
+            hotkey-overlay {
+              skip-at-startup
             }
           '';
         };
