@@ -21,6 +21,7 @@
       kanata
       neovim
       niri
+      noctalia
     ];
 
     nix.settings.experimental-features = ["nix-command" "flakes"];

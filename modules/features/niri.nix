@@ -77,6 +77,10 @@
             "Mod+Shift+Alt+L".switch-preset-column-width = _: {};
           };
 
+          gestures = {
+            hot-corners = {off = _: {};};
+          };
+
           extraConfig = ''
             animations {
               workspace-switch {
