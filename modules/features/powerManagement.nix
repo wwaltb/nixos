@@ -8,18 +8,19 @@
         battery = {
           governor = "powersave";
           turbo = "never";
+
+          # requires kernel module loaded (i.e. thinkpad_acpi), but these
+          # should be enabled by default
           enable_thresholds = "true";
           start_threshold = "40";
           stop_threshold = "80";
         };
+
         charger = {
           governor = "performance";
           turbo = "auto";
         };
       };
     };
-
-    # required for battery thresholds to work
-    boot.kernelModules = ["thinkpad_acpi"];
   };
 }
