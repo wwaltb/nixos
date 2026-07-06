@@ -1,8 +1,4 @@
-{
-  self,
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   flake.modules.nixos.niri = {
     config,
     lib,
@@ -13,9 +9,13 @@
       enable = true;
       package = inputs.wrapper-modules.wrappers.niri.wrap {
         inherit pkgs;
-        settings = {
+        settings = let
+          system = pkgs.stdenv.hostPlatform.system;
+          noctalia = inputs.noctalia.packages.${system}.default;
+          noctaliaExe = lib.getExe noctalia;
+        in {
           spawn-at-startup = [
-            "${lib.getExe inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default}"
+            "${noctaliaExe}"
           ];
 
           layout = {
@@ -60,6 +60,10 @@
 
           binds = {
             "Mod+D".close-window = _: {};
+
+            "Mod+Space".spawn-sh = "${noctaliaExe} msg panel-toggle launcher";
+            "Mod+C".spawn-sh = "${noctaliaExe} msg panel-toggle clipboard";
+            "Mod+Shift+B".spawn-sh = "${noctaliaExe} msg bar-toggle";
             "Mod+Semicolon".spawn-sh = "${lib.getExe pkgs.ghostty} +new-window";
             "Mod+Shift+Semicolon".spawn-sh = lib.getExe pkgs.librewolf;
 
@@ -77,6 +81,19 @@
             "Mod+Shift+Alt+J".switch-preset-window-height-back = _: {};
             "Mod+Shift+Alt+K".switch-preset-window-height = _: {};
             "Mod+Shift+Alt+L".switch-preset-column-width = _: {};
+
+            "XF86AudioMute".spawn-sh = "${noctaliaExe} msg volume-mute";
+            "XF86AudioRaiseVolume".spawn-sh = "${noctaliaExe} msg volume-up";
+            "XF86AudioLowerVolume".spawn-sh = "${noctaliaExe} msg volume-down";
+            "XF86AudioMicMute".spawn-sh = "${noctaliaExe} msg mic-mute";
+            "XF86MonBrightnessUp".spawn-sh = "${noctaliaExe} msg brightness-up";
+            "XF86MonBrightnessDown".spawn-sh = "${noctaliaExe} msg brightness-down";
+            "XF86Display".spawn-sh = "";
+            "XF86WLAN".spawn-sh = "${noctaliaExe} msg wifi-toggle";
+            "XF86Tools".spawn-sh = "${noctaliaExe} msg panel-toggle control-center";
+            "XF86Search".spawn-sh = "${noctaliaExe} msg panel-toggle launcher";
+            "XF86LaunchA".spawn-sh = "";
+            "XF86Explorer".toggle-overview = _: {};
           };
 
           gestures = {
@@ -85,9 +102,11 @@
 
           extraConfig = ''
             animations {
+              off
               workspace-switch {
                 duration-ms 170
                 curve "cubic-bezier" 0.767 0.013 0.338 1.077
+
                 // spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
               }
               window-open {
@@ -107,9 +126,14 @@
                 off
               }
             }
+
+            overview {
+              backdrop-color "#${config.lib.stylix.colors.base01}"
+            }
           '';
         };
       };
     };
   };
 }
+
