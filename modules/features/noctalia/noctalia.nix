@@ -13,19 +13,12 @@
     ];
 
     # programs.noctalia.recommendedServices.enable = true;
-    services.upower.enable = true;
   };
 
   flake.modules.homeManager.noctalia = {
     programs.noctalia = {
       enable = true;
-      settings = {
-        theme = {
-          mode = "dark";
-          source = "builtin";
-          builtin = "Kanagawa";
-        };
-      };
+      settings = ./noctalia-config.toml;
     };
   };
 }

@@ -14,7 +14,9 @@
       package = inputs.wrapper-modules.wrappers.niri.wrap {
         inherit pkgs;
         settings = {
-          spawn-at-startup = [];
+          spawn-at-startup = [
+            "${lib.getExe inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default}"
+          ];
 
           layout = {
             gaps = 6;
