@@ -13,9 +13,11 @@
     imports = with self.modules.nixos; [
       thinkpadHardware
 
+      discord
       fish
       general
       ghostty
+      git
       homeManager
       librewolf
       kanagawa
@@ -24,6 +26,7 @@
       niri
       noctalia
       powerManagement
+      xdg
     ];
 
     networking.hostName = "thinkpad";
