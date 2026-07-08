@@ -91,10 +91,19 @@
             "XF86MonBrightnessDown".spawn-sh = "${noctaliaExe} msg brightness-down";
             "XF86Display".spawn-sh = "";
             "XF86WLAN".spawn-sh = "${noctaliaExe} msg wifi-toggle";
+            # last 4 function keys are different on my thinkpads
+            # --- 1
             "XF86Tools".spawn-sh = "${noctaliaExe} msg panel-toggle control-center";
+            "XF86NotificationCenter".spawn-sh = "${noctaliaExe} msg panel-toggle control-center";
+            # --- 2
             "XF86Search".spawn-sh = "${noctaliaExe} msg panel-toggle launcher";
+            "XF86PickupPhone".spawn-sh = "${noctaliaExe} msg panel-toggle launcher";
+            # --- 3
             "XF86LaunchA".spawn-sh = "";
+            "XF86HangupPhone".spawn-sh = "";
+            # --- 4
             "XF86Explorer".toggle-overview = _: {};
+            "XF86Favorites".toggle-overview = _: {};
           };
 
           gestures = {
@@ -141,4 +150,3 @@
     };
   };
 }
-
