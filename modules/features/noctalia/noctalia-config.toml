@@ -6,7 +6,7 @@ order = [ "default" ]
     capsule_radius = 4
     capsule_thickness = 0.99999998137354851
     center = [ "group:g1" ]
-    end = [ "network", "bluetooth", "volume", "brightness", "battery", "clock", "control-center", "session" ]
+    end = [ "network", "bluetooth", "volume", "brightness", "battery", "group:g2", "session" ]
     margin_edge = 4
     margin_ends = 0
     padding = 8
@@ -22,6 +22,15 @@ order = [ "default" ]
         fill = "surface_variant"
         id = "g1"
         members = [ "media", "audio_visualizer" ]
+        opacity = 1.0
+        padding = 6.0
+        radius = 4.0
+
+        [[bar.default.capsule_group]]
+        enabled = true
+        fill = "surface_variant"
+        id = "g2"
+        members = [ "date", "clock" ]
         opacity = 1.0
         padding = 6.0
         radius = 4.0
@@ -128,18 +137,21 @@ enabled = true
 temperature_night = 5000
 
 [notification]
-offset_x = 4
-offset_y = 4
-position = "top_left"
+background_opacity = 0.99999997764825821
+offset_x = 5
+offset_y = 5
+position = "top_right"
 
 [osd]
-offset_x = 4
-offset_y = 4
+background_opacity = 0.99999997764825821
+offset_x = 5
+offset_y = 5
 position = "top_right"
 position_vertical = "bottom_right"
 
 [shell]
 corner_radius_scale = 0.30000000447034836
+time_format = "{:%I:%M %p}"
 
     [shell.animation]
     enabled = false
@@ -150,7 +162,7 @@ corner_radius_scale = 0.30000000447034836
     [shell.panel]
     control_center_placement = "floating"
     control_center_position = "top_right"
-    floating_offset = 4
+    floating_offset = 5
     open_near_click_control_center = false
     session_placement = "floating"
     shadow = false
@@ -187,8 +199,14 @@ capsule = true
 capsule = true
 format = "{:%I:%M %p}"
 
+[widget.control-center]
+enabled = false
+
 [widget.cpu]
 capsule = true
+
+[widget.date]
+format = "{:%a %d}"
 
 [widget.launcher]
 enabled = true
