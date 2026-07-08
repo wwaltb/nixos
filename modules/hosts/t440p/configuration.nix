@@ -3,15 +3,16 @@
   inputs,
   ...
 }: {
-  flake.nixosConfigurations.thinkpad = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.t440p = inputs.nixpkgs.lib.nixosSystem {
     modules = [
-      self.modules.nixos.thinkpadConfiguration
+      self.modules.nixos.t440pConfiguration
     ];
   };
 
-  flake.modules.nixos.thinkpadConfiguration = {pkgs, ...}: {
+  flake.modules.nixos.t440pConfiguration = {pkgs, ...}: {
     imports = with self.modules.nixos; [
-      thinkpadHardware
+      t440pHardware
+      t440pKanata
 
       discord
       fish
@@ -21,7 +22,6 @@
       homeManager
       librewolf
       kanagawa
-      kanata
       neovim
       niri
       noctalia
@@ -29,7 +29,7 @@
       xdg
     ];
 
-    networking.hostName = "thinkpad";
+    networking.hostName = "t440p";
 
     # Enable CUPS to print documents.
     # services.printing.enable = true;
