@@ -1,151 +1,137 @@
 {inputs, ...}: {
-  flake.modules.nixos.niri = {
+  flake.modules.nixos.niri = {pkgs, ...}: {
+    imports = [inputs.niri.nixosModules.niri];
+    nixpkgs.overlays = [inputs.niri.overlays.niri];
+
+    programs.niri = {
+      enable = true;
+      package = pkgs.niri-stable;
+    };
+
+    home-manager.users.walt.imports = [
+      inputs.self.modules.homeManager.niri
+    ];
+  };
+
+  flake.modules.homeManager.niri = {
     config,
     lib,
     pkgs,
     ...
-  }: {
-    programs.niri = {
-      enable = true;
-      package = inputs.wrapper-modules.wrappers.niri.wrap {
-        inherit pkgs;
-        settings = let
-          system = pkgs.stdenv.hostPlatform.system;
-          noctalia = inputs.noctalia.packages.${system}.default;
-          noctaliaExe = lib.getExe noctalia;
-        in {
-          spawn-sh-at-startup = [
-            "${noctaliaExe}"
-          ];
+  }: let
+    system = pkgs.stdenv.hostPlatform.system;
+    noctaliaExe = lib.getExe inputs.noctalia.packages.${system}.default;
+  in {
+    # disable stylix's auto niri theming since we're setting colors manually
+    stylix.targets.niri.enable = false;
 
-          layout = {
-            gaps = 6;
-            focus-ring.off = _: {};
-            border = {
-              width = 3;
-              active-color = "#${config.lib.stylix.colors.base06}";
-              inactive-color = "#${config.lib.stylix.colors.base03}";
-              urgent-color = "#${config.lib.stylix.colors.base08}";
-            };
-            background-color = "#${config.lib.stylix.colors.base00}";
+    programs.niri.settings = {
+      spawn-at-startup = [
+        {command = [noctaliaExe];}
+      ];
 
-            empty-workspace-above-first = _: {};
+      layout = {
+        gaps = 6;
 
-            preset-column-widths = [
-              {proportion = 0.333333;}
-              {proportion = 0.5;}
-              {proportion = 0.666667;}
-              {proportion = 1.0;}
-            ];
-
-            preset-window-heights = [
-              {proportion = 0.333333;}
-              {proportion = 0.5;}
-              {proportion = 0.666667;}
-              {proportion = 1.0;}
-            ];
-          };
-
-          window-rules = [
-            {
-              matches = [{}];
-              geometry-corner-radius = 4.0;
-              clip-to-geometry = true;
-              draw-border-with-background = false;
-            }
-          ];
-
-          cursor = {
-            hide-after-inactive-ms = 500;
-          };
-
-          binds = {
-            "Mod+D".close-window = _: {};
-
-            "Mod+Space".spawn-sh = "${noctaliaExe} msg panel-toggle launcher";
-            "Mod+C".spawn-sh = "${noctaliaExe} msg panel-toggle clipboard";
-            "Mod+Shift+B".spawn-sh = "${noctaliaExe} msg bar-toggle";
-            "Mod+Semicolon".spawn-sh = "${lib.getExe pkgs.ghostty} +new-window";
-            "Mod+Shift+Semicolon".spawn-sh = lib.getExe pkgs.librewolf;
-
-            "Mod+H".focus-column-or-monitor-left = _: {};
-            "Mod+J".focus-window-or-workspace-down = _: {};
-            "Mod+K".focus-window-or-workspace-up = _: {};
-            "Mod+L".focus-column-or-monitor-right = _: {};
-
-            "Mod+Shift+H".consume-or-expel-window-left = _: {};
-            "Mod+Shift+J".move-window-down-or-to-workspace-down = _: {};
-            "Mod+Shift+K".move-window-up-or-to-workspace-up = _: {};
-            "Mod+Shift+L".consume-or-expel-window-right = _: {};
-
-            "Mod+Shift+Alt+H".switch-preset-column-width-back = _: {};
-            "Mod+Shift+Alt+J".switch-preset-window-height-back = _: {};
-            "Mod+Shift+Alt+K".switch-preset-window-height = _: {};
-            "Mod+Shift+Alt+L".switch-preset-column-width = _: {};
-
-            "XF86AudioMute".spawn-sh = "${noctaliaExe} msg volume-mute";
-            "XF86AudioRaiseVolume".spawn-sh = "${noctaliaExe} msg volume-up";
-            "XF86AudioLowerVolume".spawn-sh = "${noctaliaExe} msg volume-down";
-            "XF86AudioMicMute".spawn-sh = "${noctaliaExe} msg mic-mute";
-            "XF86MonBrightnessUp".spawn-sh = "${noctaliaExe} msg brightness-up";
-            "XF86MonBrightnessDown".spawn-sh = "${noctaliaExe} msg brightness-down";
-            "XF86Display".spawn-sh = "";
-            "XF86WLAN".spawn-sh = "${noctaliaExe} msg wifi-toggle";
-            # last 4 function keys are different on my thinkpads
-            # --- 1
-            "XF86Tools".spawn-sh = "${noctaliaExe} msg panel-toggle control-center";
-            "XF86NotificationCenter".spawn-sh = "${noctaliaExe} msg panel-toggle control-center";
-            # --- 2
-            "XF86Search".spawn-sh = "${noctaliaExe} msg panel-toggle launcher";
-            "XF86PickupPhone".spawn-sh = "${noctaliaExe} msg panel-toggle launcher";
-            # --- 3
-            "XF86LaunchA".spawn-sh = "";
-            "XF86HangupPhone".spawn-sh = "";
-            # --- 4
-            "XF86Explorer".toggle-overview = _: {};
-            "XF86Favorites".toggle-overview = _: {};
-          };
-
-          gestures = {
-            hot-corners = {off = _: {};};
-          };
-
-          extraConfig = ''
-            animations {
-              off
-              workspace-switch {
-                duration-ms 170
-                curve "cubic-bezier" 0.767 0.013 0.338 1.077
-
-                // spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
-              }
-              window-open {
-                duration-ms 100
-                curve "ease-out-expo"
-              }
-              window-close {
-                duration-ms 100
-                curve "cubic-bezier" 0.879 0.032 0.349 0.808
-              }
-              window-movement {
-                duration-ms 170
-                curve "cubic-bezier" 0.767 0.013 0.338 1.077
-                // spring damping-ratio=2.0 stiffness=1400 epsilon=0.0001
-              }
-              window-resize {
-                off
-              }
-            }
-
-            overview {
-              backdrop-color "#${config.lib.stylix.colors.base01}"
-            }
-
-            hotkey-overlay {
-              skip-at-startup
-            }
-          '';
+        focus-ring.enable = false;
+        border = {
+          enable = true;
+          width = 3;
+          active.color = "#${config.lib.stylix.colors.base06}";
+          inactive.color = "#${config.lib.stylix.colors.base03}";
+          urgent.color = "#${config.lib.stylix.colors.base08}";
         };
+
+        background-color = "#${config.lib.stylix.colors.base00}";
+
+        empty-workspace-above-first = true;
+
+        preset-column-widths = [
+          {proportion = 0.333333;}
+          {proportion = 0.5;}
+          {proportion = 0.666667;}
+          {proportion = 1.0;}
+        ];
+
+        preset-window-heights = [
+          {proportion = 0.333333;}
+          {proportion = 0.5;}
+          {proportion = 0.666667;}
+          {proportion = 1.0;}
+        ];
+      };
+
+      overview.backdrop-color = "#${config.lib.stylix.colors.base01}";
+
+      window-rules = [
+        {
+          matches = [{}];
+          geometry-corner-radius = {
+            top-left = 4.0;
+            top-right = 4.0;
+            bottom-left = 4.0;
+            bottom-right = 4.0;
+          };
+          clip-to-geometry = true;
+          draw-border-with-background = false;
+        }
+      ];
+
+      animations.enable = false;
+
+      gestures.hot-corners.enable = false;
+
+      hotkey-overlay.skip-at-startup = true;
+
+      cursor.hide-after-inactive-ms = 500;
+
+      binds = with config.lib.niri.actions; {
+        "Mod+D".action = close-window;
+
+        "Mod+Space".action.spawn = [noctaliaExe "msg" "panel-toggle" "launcher"];
+        "Mod+C".action.spawn = [noctaliaExe "msg" "panel-toggle" "clipboard"];
+        "Mod+Shift+B".action.spawn = [noctaliaExe "msg" "bar-toggle"];
+        "Mod+Semicolon".action.spawn = [(lib.getExe pkgs.ghostty) "+new-window"];
+        "Mod+Shift+Semicolon".action.spawn = [(lib.getExe pkgs.librewolf)];
+
+        "Mod+H".action = focus-column-or-monitor-left;
+        "Mod+J".action = focus-window-or-workspace-down;
+        "Mod+K".action = focus-window-or-workspace-up;
+        "Mod+L".action = focus-column-or-monitor-right;
+
+        "Mod+Ctrl+H".action.focus-column = 1;
+        "Mod+Ctrl+J".action.focus-column = 2;
+        "Mod+Ctrl+K".action.focus-column = 3;
+        "Mod+Ctrl+L".action.focus-column = 4;
+        "Mod+Ctrl+Semicolon".action.focus-column = 5;
+
+        "Mod+Shift+H".action = consume-or-expel-window-left;
+        "Mod+Shift+J".action = move-window-down-or-to-workspace-down;
+        "Mod+Shift+K".action = move-window-up-or-to-workspace-up;
+        "Mod+Shift+L".action = consume-or-expel-window-right;
+
+        "Mod+Shift+Alt+H".action = switch-preset-column-width-back;
+        "Mod+Shift+Alt+J".action = switch-preset-window-height-back;
+        "Mod+Shift+Alt+K".action = switch-preset-window-height;
+        "Mod+Shift+Alt+L".action = switch-preset-column-width;
+
+        "XF86AudioMute".action.spawn = [noctaliaExe "msg" "volume-mute"];
+        "XF86AudioLowerVolume".action.spawn = [noctaliaExe "msg" "volume-down"];
+        "XF86AudioRaiseVolume".action.spawn = [noctaliaExe "msg" "volume-up"];
+        "XF86AudioMicMute".action.spawn = [noctaliaExe "msg" "mic-mute"];
+        "XF86MonBrightnessDown".action.spawn = [noctaliaExe "msg" "brightness-down"];
+        "XF86MonBrightnessUp".action.spawn = [noctaliaExe "msg" "brightness-up"];
+        # "XF86Display".action.spawn = [];
+        "XF86WLAN".action.spawn = [noctaliaExe "msg" "wifi-toggle"];
+
+        "XF86Tools".action.spawn = [noctaliaExe "msg" "panel-toggle" "control-center"];
+        "XF86NotificationCenter".action.spawn = [noctaliaExe "msg" "panel-toggle" "control-center"];
+        "XF86Search".action.spawn = [noctaliaExe "msg" "panel-toggle" "launcher"];
+        "XF86PickupPhone".action.spawn = [noctaliaExe "msg" "panel-toggle" "launcher"];
+        # "XF86LaunchA".action.spawn = [];
+        # "XF86HangupPhone".action.spawn = [];
+        "XF86Explorer".action = toggle-overview;
+        "XF86Favorites".action = toggle-overview;
       };
     };
   };
