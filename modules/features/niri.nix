@@ -87,6 +87,8 @@
 
       cursor.hide-after-inactive-ms = 500;
 
+      input.power-key-handling.enable = false;
+
       binds = with config.lib.niri.actions; {
         "Mod+D".action = close-window;
 
