@@ -53,6 +53,8 @@
           {proportion = 1.0;}
         ];
 
+        default-column-width = {proportion = 0.5;};
+
         preset-window-heights = [
           {proportion = 0.333333;}
           {proportion = 0.5;}
