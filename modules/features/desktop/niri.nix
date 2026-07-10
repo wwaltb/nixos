@@ -92,11 +92,40 @@
       binds = with config.lib.niri.actions; {
         "Mod+D".action = close-window;
 
-        "Mod+Space".action.spawn = [noctaliaExe "msg" "panel-toggle" "launcher"];
-        "Mod+C".action.spawn = [noctaliaExe "msg" "panel-toggle" "clipboard"];
+        "Mod+Space".action.spawn = [
+          noctaliaExe
+          "msg"
+          "panel-toggle"
+          "launcher"
+        ];
+        "Mod+C".action.spawn = [
+          noctaliaExe
+          "msg"
+          "panel-toggle"
+          "clipboard"
+        ];
+        "Mod+B".action.spawn = [
+          noctaliaExe
+          "msg"
+          "panel-toggle"
+          "control-center"
+          "bluetooth"
+        ];
+        "Mod+N".action.spawn = [
+          noctaliaExe
+          "msg"
+          "panel-toggle"
+          "control-center"
+          "network"
+        ];
         "Mod+Shift+B".action.spawn = [noctaliaExe "msg" "bar-toggle"];
-        "Mod+Semicolon".action.spawn = [(lib.getExe pkgs.ghostty) "+new-window"];
-        "Mod+Shift+Semicolon".action.spawn = [(lib.getExe pkgs.librewolf)];
+        "Mod+Semicolon".action.spawn = [
+          (lib.getExe pkgs.ghostty)
+          "+new-window"
+        ];
+        "Mod+Shift+Semicolon".action.spawn = [
+          (lib.getExe pkgs.librewolf)
+        ];
 
         "Mod+H".action = focus-column-or-monitor-left;
         "Mod+J".action = focus-window-or-workspace-down;
@@ -119,21 +148,69 @@
         "Mod+Shift+Alt+K".action = switch-preset-window-height;
         "Mod+Shift+Alt+L".action = switch-preset-column-width;
 
-        "XF86AudioMute".action.spawn = [noctaliaExe "msg" "volume-mute"];
-        "XF86AudioLowerVolume".action.spawn = [noctaliaExe "msg" "volume-down"];
-        "XF86AudioRaiseVolume".action.spawn = [noctaliaExe "msg" "volume-up"];
-        "XF86AudioMicMute".action.spawn = [noctaliaExe "msg" "mic-mute"];
-        "XF86MonBrightnessDown".action.spawn = [noctaliaExe "msg" "brightness-down"];
-        "XF86MonBrightnessUp".action.spawn = [noctaliaExe "msg" "brightness-up"];
+        "XF86AudioMute".action.spawn = [
+          noctaliaExe
+          "msg"
+          "volume-mute"
+        ];
+        "XF86AudioLowerVolume".action.spawn = [
+          noctaliaExe
+          "msg"
+          "volume-down"
+        ];
+        "XF86AudioRaiseVolume".action.spawn = [
+          noctaliaExe
+          "msg"
+          "volume-up"
+        ];
+        "XF86AudioMicMute".action.spawn = [
+          noctaliaExe
+          "msg"
+          "mic-mute"
+        ];
+        "XF86MonBrightnessDown".action.spawn = [
+          noctaliaExe
+          "msg"
+          "brightness-down"
+        ];
+        "XF86MonBrightnessUp".action.spawn = [
+          noctaliaExe
+          "msg"
+          "brightness-up"
+        ];
         # "XF86Display".action.spawn = [];
         "XF86WLAN".action.spawn = [noctaliaExe "msg" "wifi-toggle"];
 
-        "XF86Tools".action.spawn = [noctaliaExe "msg" "panel-toggle" "control-center"];
-        "XF86NotificationCenter".action.spawn = [noctaliaExe "msg" "panel-toggle" "control-center"];
-        "XF86Search".action.spawn = [noctaliaExe "msg" "panel-toggle" "launcher"];
-        "XF86PickupPhone".action.spawn = [noctaliaExe "msg" "panel-toggle" "launcher"];
+        # F9
+        "XF86Tools".action.spawn = [
+          noctaliaExe
+          "msg"
+          "panel-toggle"
+          "control-center"
+        ];
+        "XF86NotificationCenter".action.spawn = [
+          noctaliaExe
+          "msg"
+          "panel-toggle"
+          "control-center"
+        ];
+        # F10
+        "XF86Search".action.spawn = [
+          noctaliaExe
+          "msg"
+          "panel-toggle"
+          "launcher"
+        ];
+        "XF86PickupPhone".action.spawn = [
+          noctaliaExe
+          "msg"
+          "panel-toggle"
+          "launcher"
+        ];
+        # F11
         # "XF86LaunchA".action.spawn = [];
         # "XF86HangupPhone".action.spawn = [];
+        # F12
         "XF86Explorer".action = toggle-overview;
         "XF86Favorites".action = toggle-overview;
       };

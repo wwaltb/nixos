@@ -3,10 +3,10 @@ order = [ "default" ]
 
     [bar.default]
     background_opacity = 0.0
-    capsule_radius = 4
+    capsule_radius = 2
     capsule_thickness = 0.99999998137354851
     center = [ "group:g1" ]
-    end = [ "network", "bluetooth", "volume", "brightness", "battery", "group:g2", "session" ]
+    end = [ "bluetooth", "network", "volume", "brightness", "battery", "group:g2", "session" ]
     margin_edge = 6
     margin_ends = 0
     margin_opposite_edge = 1
@@ -196,6 +196,9 @@ show_when_idle = true
 width = 80
 
 [widget.battery]
+capsule = true
+
+[widget.bluetooth]
 capsule = true
 
 [widget.brightness]
