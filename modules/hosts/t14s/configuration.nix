@@ -9,7 +9,7 @@
     ];
   };
 
-  flake.modules.nixos.t14sConfiguration = {pkgs, ...}: {
+  flake.modules.nixos.t14sConfiguration = {...}: {
     imports = with self.modules.nixos; [
       t14sHardware
       t14sKanata
@@ -26,6 +26,7 @@
       niri
       noctalia
       powerManagement
+      tuigreet
       xdg
     ];
 
