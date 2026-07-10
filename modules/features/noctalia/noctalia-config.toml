@@ -7,9 +7,10 @@ order = [ "default" ]
     capsule_thickness = 0.99999998137354851
     center = [ "group:g1" ]
     end = [ "network", "bluetooth", "volume", "brightness", "battery", "group:g2", "session" ]
-    margin_edge = 4
+    margin_edge = 6
     margin_ends = 0
-    padding = 8
+    margin_opposite_edge = 1
+    padding = 6
     panel_overlap = 0
     radius = 4
     shadow = false
@@ -149,6 +150,9 @@ offset_y = 5
 position = "top_right"
 position_vertical = "bottom_right"
 
+    [osd.kinds]
+    media = false
+
 [shell]
 corner_radius_scale = 0.30000000447034836
 time_format = "{:%I:%M %p}"
@@ -206,7 +210,7 @@ enabled = false
 capsule = true
 
 [widget.date]
-format = "{:%a %d}"
+format = "{:%a, %d -}"
 
 [widget.launcher]
 enabled = true
