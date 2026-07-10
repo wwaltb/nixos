@@ -1,9 +1,7 @@
-{
-  self,
-  inputs,
-  ...
-}: {
-  flake.modules.nixos.kanata = {
+{...}: let
+  keyboard = "t440p";
+in {
+  flake.modules.nixos."${keyboard}Kanata" = {pkgs, ...}: {
     services.udev.extraRules = ''
       SUBSYSTEM=="input", \
       ENV{ID_BUS}=="i8042", \
@@ -11,6 +9,7 @@
       ENV{POINTINGSTICK_SENSITIVITY}=="200", \
       SYMLINK+="input/trackpoint-stable"
     '';
+
     services.libinput = {
       enable = true;
       mouse = {
@@ -18,9 +17,10 @@
         accelSpeed = "0.5";
       };
     };
+
     services.kanata = {
       enable = true;
-      keyboards.thinkpad = {
+      keyboards.${keyboard} = {
         devices = [
           "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
           "/dev/input/trackpoint-stable"
@@ -169,6 +169,16 @@
             spm (tap-hold 200 200 spc mmid)
           )
         '';
+      };
+    };
+
+    systemd.services."kanata-${keyboard}-resume" = {
+      description = "Restart kanata after hibernate resume";
+      after = ["hibernate.target"];
+      wantedBy = ["hibernate.target"];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${pkgs.systemd}/bin/systemctl restart kanata-${keyboard}.service";
       };
     };
   };

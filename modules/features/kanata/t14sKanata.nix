@@ -1,9 +1,7 @@
-{
-  self,
-  inputs,
-  ...
-}: {
-  flake.modules.nixos.t14sKanata = {
+{...}: let
+  keyboard = "t14s";
+in {
+  flake.modules.nixos."${keyboard}Kanata" = {pkgs, ...}: {
     services.libinput = {
       enable = true;
       mouse = {
@@ -11,9 +9,10 @@
         accelSpeed = "0.5";
       };
     };
+
     services.kanata = {
       enable = true;
-      keyboards.thinkpad = {
+      keyboards.${keyboard} = {
         devices = [
           "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
           "/dev/input/by-path/platform-i8042-serio-1-event-mouse"
@@ -162,6 +161,16 @@
             spm (tap-hold 200 200 spc mmid)
           )
         '';
+      };
+    };
+
+    systemd.services."kanata-${keyboard}-resume" = {
+      description = "Restart kanata after hibernate resume";
+      after = ["hibernate.target"];
+      wantedBy = ["hibernate.target"];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${pkgs.systemd}/bin/systemctl restart kanata-${keyboard}.service";
       };
     };
   };
