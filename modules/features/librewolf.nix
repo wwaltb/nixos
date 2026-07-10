@@ -19,7 +19,15 @@
           "sidebar.verticalTabs" = true;
           "browser.toolbars.bookmarks.visibility" = "never"; # "newtab"
 
-          "privacy.sanitize.sanitizeOnShutdown" = "false";
+          "network.cookie.lifetimePolicy" = 0;
+          "privacy.sanitize.sanitizeOnShutdown" = false;
+          # "privacy.clearOnShutdown.cookies" = false;
+          # "privacy.clearOnShutdown.history" = false;
+          # "privacy.clearOnShutdown.sessions" = false;
+          # "privacy.clearOnShutdown.offlineApps" = false;
+          # "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
+
+          "browser.startup.page" = 3;
         };
 
         search = {
