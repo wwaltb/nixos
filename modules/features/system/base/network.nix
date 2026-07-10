@@ -1,5 +1,5 @@
 {...}: {
-  flake.modules.nixos.general = {pkgs, ...}: {
+  flake.modules.nixos.system = {...}: {
     networking.networkmanager.enable = true;
 
     services.openssh.enable = true;

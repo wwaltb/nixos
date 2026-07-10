@@ -11,23 +11,31 @@
 
   flake.modules.nixos.t14sConfiguration = {...}: {
     imports = with self.modules.nixos; [
+      # t14s modules
+      t14sDolbySound
       t14sHardware
       t14sKanata
 
-      discord
-      fish
-      general
-      ghostty
-      git
+      # system modules
+      system
       homeManager
-      librewolf
-      kanagawa
-      neovim
-      niri
-      noctalia
       powerManagement
       tuigreet
-      xdg
+
+      # terminal modules
+      fish
+      git
+      neovim
+
+      # desktop modules
+      discord
+      ghostty
+      librewolf
+      niri
+      noctalia
+
+      # theme
+      kanagawa
     ];
 
     networking.hostName = "t14s";

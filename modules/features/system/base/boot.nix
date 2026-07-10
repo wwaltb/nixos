@@ -1,8 +1,5 @@
 {...}: {
-  flake.modules.nixos.general = {pkgs, ...}: {
-    nix.settings.experimental-features = ["nix-command" "flakes"];
-    nixpkgs.config.allowUnfree = true;
-
+  flake.modules.nixos.system = {...}: {
     boot.loader = {
       efi.canTouchEfiVariables = true;
 
@@ -16,10 +13,5 @@
 
       systemd-boot.enable = false;
     };
-
-    environment.systemPackages = with pkgs; [
-      wget
-      git
-    ];
   };
 }

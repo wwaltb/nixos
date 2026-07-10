@@ -1,5 +1,9 @@
 {self, ...}: {
-  flake.modules.nixos.git = {
+  flake.modules.nixos.git = {pkgs, ...}: {
+    environment.systemPackages = [
+      pkgs.git
+    ];
+
     home-manager.users.walt.imports = [
       self.modules.homeManager.git
     ];

@@ -14,7 +14,7 @@ order = [ "default" ]
     panel_overlap = 0
     radius = 4
     shadow = false
-    start = [ "workspaces", "tray", "cpu", "ram" ]
+    start = [ "workspaces", "cpu", "ram" ]
     thickness = 20
     widget_spacing = 4
 
@@ -188,7 +188,9 @@ unit = "imperial"
 
 [widget.audio_visualizer]
 bands = 42
+centered = false
 color_2 = "tertiary"
+enabled = true
 mirrored = false
 show_when_idle = true
 width = 80
@@ -242,6 +244,7 @@ capsule = true
 
 [widget.tray]
 capsule = true
+enabled = true
 
 [widget.volume]
 capsule = true

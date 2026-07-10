@@ -1,11 +1,8 @@
 {...}: {
-  flake.modules.nixos.general = {
-    config,
-    pkgs,
-    ...
-  }: {
+  flake.modules.nixos.system = {pkgs, ...}: {
     users.users.walt = {
       isNormalUser = true;
+
       extraGroups = ["wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
       packages = with pkgs; [
         tree

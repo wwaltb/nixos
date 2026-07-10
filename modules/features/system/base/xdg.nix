@@ -1,5 +1,5 @@
 {self, ...}: {
-  flake.modules.nixos.xdg = {
+  flake.modules.nixos.system = {
     home-manager.users.walt.imports = [
       self.modules.homeManager.xdg
     ];
