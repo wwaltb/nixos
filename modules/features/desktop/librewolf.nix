@@ -36,6 +36,12 @@
           privateDefault = "ddg";
 
           engines = {
+            "bing".metaData.hidden = true;
+            "google".metaData.hidden = true;
+            "Mojeek".metaData.hidden = true;
+            "perplixity".metaData.hidden = true;
+            "Searx Belgium".metaData.hidden = true;
+
             "Nix Packages" = {
               urls = [
                 {
